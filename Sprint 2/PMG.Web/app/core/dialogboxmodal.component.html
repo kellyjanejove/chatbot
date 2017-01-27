@@ -1,0 +1,12 @@
+<script type="text/ng-template" id="dialogbox.modal.html">
+    <div class="modal-header">
+        <h3>{{modalInstanceCtrl.title}}</h3>
+    </div>
+    <div class="modal-body">
+        <p>{{modalInstanceCtrl.body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="modalInstanceCtrl.confirm()">OK</button>
+        <button class="btn btn-default" ng-click="modalInstanceCtrl.cancel()">Cancel</button>
+    </div>
+</script>

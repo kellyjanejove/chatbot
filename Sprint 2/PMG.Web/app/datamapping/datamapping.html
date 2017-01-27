@@ -1,0 +1,198 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h4 class="title">{{dataMappingCtrl.title}}</h4>
+            </div>
+            <uib-tabset active="dataMappingCtrl.activeTabIndex">
+                <uib-tab index="0" heading="My Criteria" id="myCriteria">
+                    <div class="form-group">
+                        <div class="col-md-12 table-responsive">
+                            <table class="table table-condensed table-hover table-bordered" id="tableDataMapping">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-3">
+                                            <center>Field Name</center>
+                                        </th>
+                                        <th class="col-md-2">
+                                            <center>Field Operator</center>
+                                        </th>
+                                        <th class="col-md-7">
+                                            <center>Field Values</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="dataMapping in dataMappingCtrl.dataMappingList" ng-show="dataMapping.isSelected" ng-class="{ 'danger' : !dataMappingCtrl.validateFieldValue(dataMapping) && dataMappingCtrl.isFormSubmitted }">
+                                        <!-- OPERATOR -->
+                                        <td ng-if="!$last" class="pointerCursor" ng-click="dataMappingCtrl.clearRow(dataMapping)">{{ dataMapping.Name }}</td>
+                                        <td ng-if="$last" class="pointerCursor redFont" ng-click="dataMappingCtrl.showSelectAllColumnsModal(); dataMappingCtrl.closePopovers()"><center><b>{{ dataMapping.Name }}</b></center></td>
+                                        <td>
+                                            <select ng-options="operator for operator in dataMapping.OperatorList" ng-model="dataMapping.Operator" ng-hide="$last" ng-change="dataMappingCtrl.setOperatorValue(dataMapping)" ng-click="dataMappingCtrl.closePopovers()"></select>
+                                        </td>
+                                        <!-- /OPERATOR -->
+                                        <!-- VALUES -->
+                                        <td ng-if="!$last">
+                                            <div ng-if="dataMapping.Type==='Text' || dataMapping.Operator.indexOf('LIKE') > -1">
+                                                <textarea uib-popover-template="dataMappingCtrl.dynamicPopover.textTemplateUrl" popover-placement="bottom" readonly class="pointerCursor" ng-model="dataMapping.Values" ng-change="dataMappingCtrl.setValues($event, dataMapping)" ng-click="dataMappingCtrl.openPopover(dataMapping)" popover-is-open="dataMapping.isPopoverOpen"></textarea>
+                                                <script type="text/ng-template" id="popoverText.html">
+                                                    <wildcardtextbox model="dataMapping.searchName" ng-keydown="dataMappingCtrl.setValues($event, dataMapping)"></wildcardtextbox>
+                                                </script>
+                                            </div>
+                                            <div class="form-group" ng-if="dataMapping.Type==='Date'">
+                                                <button type="button" class="btn btn-default" ng-click="dataMappingCtrl.addDate(dataMapping); dataMappingCtrl.closePopovers()">
+                                                    <i class="fa fa-calendar-o"></i>
+                                                </button>
+                                                <div ng-repeat="item in dataMapping.dateList">
+                                                    <input type="text" class="form-control pointerCursor"
+                                                        uib-datepicker-popup="{{dataMappingCtrl.format}}"
+                                                        ng-model="item.value"
+                                                        ng-change="dataMappingCtrl.setValues($event, dataMapping, item)"
+                                                        ng-click="dataMappingCtrl.openDatePicker($event, item, $index)"
+                                                        is-open="item.isDatePickerOpen"
+                                                        datepicker-options="dataMappingCtrl.dateOptions"
+                                                        show-button-bar="false"
+                                                        readonly />
+                                                </div>
+                                            </div>
+                                            <div ng-if="dataMapping.Type==='LookUp' && !dataMapping.Operator.contains('LIKE')">
+                                                <textarea uib-popover-template="dataMappingCtrl.dynamicPopover.selectLookUpTemplateUrl" popover-placement="bottom" popover-is-open="dataMapping.isPopoverOpen" readonly class="pointerCursor" ng-model="dataMapping.Values" ng-click="dataMappingCtrl.openPopover(dataMapping)"></textarea>
+                                                <script type="text/ng-template" id="popoverSelect.lookup.html">
+                                                    <div>
+                                                        <input type="text" ng-model="dataMapping.searchName" ng-change="dataMappingCtrl.populateValueList(dataMapping)"/>
+                                                        Searched for {{dataMapping.searchName}}. {{dataMappingCtrl.getResultsCount(dataMapping)}} Match found.
+                                                        <div ng-if="dataMapping.Operator.contains('=') || dataMapping.Operator==='<>' || dataMapping.Operator==='>' || dataMapping.Operator==='<'">
+                                                            <select class="form-control overflowXAuto" ng-model="dataMapping.selectedValues" ng-change="dataMappingCtrl.setValues($event, dataMapping)" ng-options="item for item in dataMapping.ValueList">
+                                                            </select>
+                                                        </div> 
+                                                        <div ng-if="!dataMapping.Operator.contains('=') && dataMapping.Operator!=='<>' && dataMapping.Operator!=='>' && dataMapping.Operator!=='<'">
+                                                            <select multiple class="form-control overflowXAuto" ng-model="dataMapping.selectedValues" ng-change="dataMappingCtrl.setValues($event, dataMapping)" ng-options="item for item in dataMapping.ValueList"></select>
+                                                        </div>
+                                                    </div>
+                                                </script>
+                                            </div>
+                                            <div ng-if="dataMapping.Type==='List' && !dataMapping.Operator.contains('LIKE')">
+                                                <textarea uib-popover-template="dataMappingCtrl.dynamicPopover.selectListTemplateUrl" popover-placement="bottom" popover-is-open="dataMapping.isPopoverOpen" readonly class="pointerCursor" ng-model="dataMapping.Values" ng-click="dataMappingCtrl.openPopover(dataMapping); dataMappingCtrl.populateValueList(dataMapping)"></textarea>
+                                                <script type="text/ng-template" id="popoverSelect.list.html">
+                                                    <div>
+                                                        <input type="text" ng-model="dataMapping.searchName" ng-change="dataMappingCtrl.addSearchName(dataMapping)"/>
+                                                        Searched for {{dataMapping.searchName}}. {{dataMappingCtrl.getResultsCount(dataMapping)}} result(s) found.
+                                                        <div ng-if="dataMapping.Operator.contains('=') || dataMapping.Operator==='<>' || dataMapping.Operator==='>' || dataMapping.Operator==='<'">
+                                                            <select class="form-control overflowXAuto" ng-model="dataMapping.selectedValues" ng-change="dataMappingCtrl.setValues($event, dataMapping)" ng-options="item for item in dataMapping.ValueList | startsWith:dataMapping.searchName"></select>
+                                                        </div>
+                                                        <div ng-if="!dataMapping.Operator.contains('=') && dataMapping.Operator!=='<>' && dataMapping.Operator!=='>' && dataMapping.Operator!=='<'">
+                                                            <select multiple class="form-control overflowXAuto" ng-model="dataMapping.selectedValues" ng-change="dataMappingCtrl.setValues($event, dataMapping)" ng-options="item for item in dataMapping.ValueList | startsWith:dataMapping.searchName"></select>
+                                                        </div>
+                                                    </div>
+                                                </script>
+                                            </div>
+                                        </td>
+                                        <td ng-if="$last"></td>
+                                        <!-- /VALUES -->
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 text-right">
+                            <button class="btn" ng-click="dataMappingCtrl.clearAll()">Clear All</button>
+                            <button class="btn">Options</button>
+                            <button class="btn" ng-click="dataMappingCtrl.search(); dataMappingCtrl.closePopovers()">Search</button>
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab index="1" heading="My Results" deselect="dataMappingCtrl.confirmChanges()">
+                    <div class="col-md-12 table-responsive">
+                        <table class="table table-condensed table-hover table-bordered" id="tableDataMapping">
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="name in dataMappingCtrl.resultColumnNameList">{{name}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="result in dataMappingCtrl.searchResultList" class="pointerCursor" ng-click="dataMappingCtrl.showResultsDetailModal(result)">
+                                    <td class="mapIndicator" ng-class="result.Ind ? 'mapped' : 'unmapped'" ></td>
+                                    <td>{{$index + 1}}</td>
+                                    <td>{{result.ParentId}}</td>
+                                    <td>{{result.CoCode}}</td>
+                                    <td>{{result.CountryName}}</td>
+                                    <td>{{result.PersNumber}}</td>
+                                    <td>{{result.Name}}</td>
+                                    <td>{{result.AcctNum}}</td>
+                                    <td>{{result.AcctName}}</td>
+                                    <td>{{result.PostingDate}}</td>
+                                    <td>{{result.LineItemDescription}}</td>
+                                    <td>{{result.LocalAmount}}</td>
+                                    <td>{{result.AcctngDocNum}}</td>
+                                    <td>{{result.TransactionType}}</td>
+                                    <td>{{result.TaxYear}}</td>
+                                    <td>{{result.ClientName}}</td>
+                                    <td>{{result.SendCo}}</td>
+                                    <td>{{result.Comments}}</td>
+                                    <td>{{result.IntercoDocNumber}}</td>
+                                    <td>{{result.HomeCoCode}}</td>
+                                    <td>{{result.HomeCountry}}</td>
+                                    <td>{{result.Level}}</td>
+                                    <td>{{result.CostCenterNum}}</td>
+                                    <td>{{result.CostCenterDescription}}</td>
+                                    <td>{{result.WbsNum}}</td>
+                                    <td>{{result.WbsName}}</td>
+                                    <td>{{result.ProfitCenterNum}}</td>
+                                    <td>{{result.DocType}}</td>
+                                    <td>{{result.ParkedById}}</td>
+                                    <td>{{result.PostedById}}</td>
+                                    <td>{{result.UpdatedBy}}</td>
+                                    <td>{{result.LastUpdated}}</td>
+                                    <td>{{result.AssignmentProfileId}}</td>
+                                    <td>{{result.StartDate}}</td>
+                                    <td>{{result.EndDate}}</td>
+                                    <td>{{result.TaxableStatus}}</td>
+                                    <td>{{result.CompensatoryInHome}}</td>
+                                    <td>{{result.ProjectName}}</td>
+                                    <td>{{result.ProjectOrganization}}</td>
+                                    <td>{{result.HostCountryName}}</td>
+                                    <td>{{result.Reference}}</td>
+                                    <td>{{result.EnterpriseIdOfParkedBy}}</td>
+                                    <td>{{result.EnterpriseIdOfPostedBy}}</td>
+                                    <td>{{result.FunctionalArea}}</td>
+                                    <td>{{result.YearMonth}}</td>
+                                    <td>{{result.JeIdAndHeader}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-md-12 text-right"> 
+                            <button class="btn" ng-click="dataMappingCtrl.save()">Save</button>
+                            <button class="btn">Export</button>
+                         </div>
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+</div>
+<trdrdialogmodal></trdrdialogmodal>
+<dialogboxmodal></dialogboxmodal>
+<datamappingdetailmodal></datamappingdetailmodal>
+<script type="text/ng-template" id="modalPopover.lookup.html">
+    <div>
+        <input type="text" ng-model="modalInstanceCtrl.detail.searchName" ng-change="modalInstanceCtrl.addSearchName(modalInstanceCtrl.detail)"/>
+        <!--<input type="text" ng-model="modalInstanceCtrl.detail.searchName "/>-->
+        Searched for {{modalInstanceCtrl.detail.searchName}}. {{modalInstanceCtrl.getLookUpResultsCount()}} Match found.
+        <select class="form-control overflowXAuto" ng-model="modalInstanceCtrl.detail.selectedValue" ng-change="modalInstanceCtrl.setValues(modalInstanceCtrl.detail)" ng-options="item for item in modalInstanceCtrl.detail.ValueList">
+            <!--<option></option> -->
+        </select>
+    </div>
+</script>
+<script type="text/ng-template" id="modalPopover.list.html">
+    <div>
+        <input type="text" ng-model="modalInstanceCtrl.detail.searchName" ng-change="modalInstanceCtrl.addSearchName(modalInstanceCtrl.detail)"/>
+        Searched for {{modalInstanceCtrl.detail.searchName}}. {{modalInstanceCtrl.getResultsCount()}} result(s) found.
+        <select class="form-control overflowXAuto" ng-model="modalInstanceCtrl.detail.selectedValue" ng-change="modalInstanceCtrl.setValues(modalInstanceCtrl.detail)" ng-options="item for item in modalInstanceCtrl.detail.ValueList | startsWith:modalInstanceCtrl.detail.searchName">
+            <!--<option></option> -->
+        </select>
+    </div>
+</script>

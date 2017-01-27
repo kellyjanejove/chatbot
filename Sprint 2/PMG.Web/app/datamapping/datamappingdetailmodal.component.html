@@ -1,0 +1,55 @@
+<script type="text/ng-template" id="datamappingdetail.modal.html">
+    <div class="modal-header">
+        <p>{{modalInstanceCtrl.detail.LineItemDescription}}</p>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="col-md-3">
+                <label class="control-label" ng-click="modalInstanceCtrl.clearField('Name')">Name</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control pointerCursor" ng-model="modalInstanceCtrl.detail.Name"
+                 uib-popover-template="modalInstanceCtrl.dynamicPopover.selectLookUpTemplateUrl" popover-placement="bottom" popover-is-open="modalInstanceCtrl.detail.isNamePopoverOpen" readonly class="pointerCursor" ng-model="modalInstanceCtrl.detail.Name" ng-click="modalInstanceCtrl.openPopover(modalInstanceCtrl.detail, 'Name')" ng-change= "modalInstanceCtrl.populateValueList(modalInstanceCtrl.detail, 'Name')"/>
+            </div>
+        </div>
+    <div class="form-group">
+            <div class="col-md-3">
+                <label class="control-label" ng-click="modalInstanceCtrl.clearField('TaxYear')">Tax Year</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control pointerCursor" ng-model="modalInstanceCtrl.detail.TaxYear"
+                uib-popover-template="modalInstanceCtrl.dynamicPopover.selectListTemplateUrl" popover-placement="bottom" popover-is-open="modalInstanceCtrl.detail.isTaxYearPopoverOpen" readonly class="pointerCursor" ng-model="modalInstanceCtrl.detail.TaxYear" ng-click="modalInstanceCtrl.openPopover(modalInstanceCtrl.detail, 'Tax Year'); modalInstanceCtrl.populateValueList(modalInstanceCtrl.detail, 'Tax Year')"/>
+            </div>
+                </div>
+            <div class="form-group">
+            <div class="col-md-3">
+                <label class="control-label" ng-click="modalInstanceCtrl.clearField('TransactionType')">Trans Type</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control pointerCursor" ng-model="modalInstanceCtrl.detail.TransactionType"
+                uib-popover-template="modalInstanceCtrl.dynamicPopover.selectListTemplateUrl" popover-placement="bottom" popover-is-open="modalInstanceCtrl.detail.isTransactionTypePopoverOpen" readonly class="pointerCursor" ng-model="modalInstanceCtrl.detail.TransactionType" ng-click="modalInstanceCtrl.openPopover(modalInstanceCtrl.detail, 'Trans Type'); modalInstanceCtrl.populateValueList(modalInstanceCtrl.detail, 'Trans Type')"/>
+            </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label class="control-label" ng-click="modalInstanceCtrl.clearField('ClientName')">Client Name</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" class="form-control pointerCursor" ng-model="modalInstanceCtrl.detail.ClientName"
+                    uib-popover-template="modalInstanceCtrl.dynamicPopover.selectListTemplateUrl" popover-placement="bottom" popover-is-open="modalInstanceCtrl.detail.isClientNamePopoverOpen" readonly class="pointerCursor" ng-model="modalInstanceCtrl.detail.ClientName" ng-click="modalInstanceCtrl.openPopover(modalInstanceCtrl.detail, 'Client Name'); modalInstanceCtrl.populateValueList(modalInstanceCtrl.detail, 'Client Name'); "/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3">
+                    <label class="control-label">Comments</label>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" ng-model="modalInstanceCtrl.detail.Comments" ng-click="modalInstanceCtrl.openPopover(modalInstanceCtrl.detail, 'Comments')" ng-change="modalInstanceCtrl.replaceText()"/>
+                </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="modalInstanceCtrl.confirm()">OK</button>
+        <button class="btn btn-primary" ng-click="modalInstanceCtrl.cancel()">Close</button>
+    </div>
+</script>

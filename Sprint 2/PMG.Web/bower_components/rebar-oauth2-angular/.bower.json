@@ -1,0 +1,55 @@
+{
+  "name": "rebar-oauth2-angular",
+  "homepage": "https://github.com/AzureAD/azure-activedirectory-library-for-js",
+  "authors": [
+    "MSOpentech",
+    "Accenture"
+  ],
+  "description": "Forked original ADAL Library to support OAuth2 Implict Flow",
+  "main": [
+    "./lib/adal.js",
+    "./lib/adal-angular.js"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "adal",
+    "oauth",
+    "active",
+    "directory",
+    "azure"
+  ],
+  "licenses": [
+    {
+      "type": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "*"
+  },
+  "devDependencies": {
+    "angular-resource": "~1.2.26",
+    "angular-mocks": "~1.2.16",
+    "jasmine": "2.0.0",
+    "angular-route": "~1.2.26"
+  },
+  "_release": "0394d9919f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "0394d9919fdf5742d58b5adc1fc012867cf60569"
+  },
+  "_source": "https://innersource.accenture.com/rebarrepo/rebar-oauth2-angular-library.git",
+  "_target": "*",
+  "_originalSource": "https://innersource.accenture.com/rebarrepo/rebar-oauth2-angular-library.git",
+  "_direct": true
+}

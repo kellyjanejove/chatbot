@@ -1,0 +1,2 @@
+C:\Users\john.nicholas.z.asia\Documents\Project Files\SearchFunctions\SelectFunctions\SelectFunctions\obj\Debug\SelectFunctions.njsprojResolveAssemblyReference.cache
+C:\Users\john.nicholas.z.asia\Documents\Project Files\SearchFunctions\SelectFunctions\SelectFunctions\bin\Microsoft.NodejsTools.WebRole.dll

@@ -1,0 +1,57 @@
+﻿.pointerCursor {
+    cursor:pointer;
+}
+
+.redFont {
+    color:red;
+}
+
+td > select {
+    width: 100%;
+}
+
+th {
+    white-space: nowrap;
+}
+
+td div input {
+    width: 100%;
+}
+
+td div textarea {
+    width: 100%;
+}
+
+#checkBoxSelectAll {
+	width: 30px;
+	height: 30px;
+}
+
+.overflowXAuto {
+    overflow-x: auto;
+}
+
+.mapIndicator  {
+    /*display: block;*/
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+}
+
+.mapped {
+    background-image: url(../Content/Images/mapped.gif);
+}
+
+.unmapped {
+    background-image: url(../Content/Images/unmapped.gif);
+}
+
+/*td > div > div > div > input {
+    display: block;
+    width: 100%;
+}*/
+
+/*.checkbox-primary input[type=checkbox]:checked + .checkbox-material .check:before {
+    color: black !important;
+}
+*/

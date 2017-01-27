@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/2319d7a678b044b3a31c00acbd87f23c233cfd73/karma-chai-sinon/karma-chai-sinon.d.ts",
+    "raw": "registry:dt/karma-chai-sinon#0.1.5+20151029122844",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/2319d7a678b044b3a31c00acbd87f23c233cfd73/karma-chai-sinon/karma-chai-sinon.d.ts"
+  }
+}

@@ -1,0 +1,129 @@
+﻿
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <style>
+        /* This helps the ng-show/ng-hide animations start at the right place. */
+        /* Since Angular has this but needs to load, this gives us the class early. */
+        .ng-hide {
+            display: none !important;
+        }
+    </style>
+    <title data-ng-bind="title">People Mobility Gateway</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <base href="/" />
+    <script>
+        // Must be first. IE10 mobile viewport fix
+        if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            var mq = "&#64;-ms-viewport{width:auto!important}";
+            msViewportStyle.appendChild(document.createTextNode(mq));
+            document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+        };
+    </script>
+
+    <!-- build:css styles/lib.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/app.css-->
+    <!-- inject:css -->
+    <link href="/content/vendor.min.css" rel="stylesheet" />
+    <link href="/content/ui-harmonize-1.0.0.css" rel="stylesheet" />
+    <link href="/content/harmonize-icons.css" rel="stylesheet" />
+    <link href="/content/specific-app.css" rel="stylesheet" />
+    <link href="/content/acn-color-forest-green.css" rel="stylesheet" />
+    <link href="/content/styles.css" rel="stylesheet" />
+    <link href="/content/custom.css" rel="stylesheet" />
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+
+<body class="ng-cloak" ng-class="bodyClass">
+    <div>
+        <div ng-include="'app/layout/shell.html'">
+    </div>
+    <footer class="footer hidden">
+        <div class="container">
+            <div class="row">Accenture Copyright 2016 | All rights reserved.</div>
+        </div>
+    </footer>
+    <!--<script src="Scripts/vendor/vendor.js"></script>-->
+    <!-- build:js js/lib.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <!--<script src="bower_components/sidr/src/jquery.sidr.js"></script>-->
+    <script src="bower_components/toastr/toastr.js"></script>
+    <script src="bower_components/rebar-oauth2-angular/lib/adal.js"></script>
+    <script src="bower_components/rebar-oauth2-angular/lib/adal-angular.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/extras.angular.plus/ngplus-overlay.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js js/app.js-->
+    <!-- inject:js -->
+    <script src="/app/app.module.js"></script>
+    <script src="/app/blocks/exception/exception.module.js"></script>
+    <script src="/app/blocks/logger/logger.module.js"></script>
+    <script src="/app/blocks/router/router.module.js"></script>
+    <script src="/app/core/core.module.js"></script>
+    <script src="/app/datamapping/datamapping.module.js"></script>
+    <script src="/app/layout/layout.module.js"></script>
+    <script src="/app/report/report.module.js"></script>
+    <script src="/app/widgets/widgets.module.js"></script>
+    <script src="/app/blocks/exception/exception-handler.provider.js"></script>
+    <script src="/app/blocks/exception/exception.js"></script>
+    <script src="/app/blocks/logger/logger.js"></script>
+    <script src="/app/blocks/router/router-helper.provider.js"></script>
+    <script src="/app/core/alphanumeric.filter.js"></script>
+    <script src="/app/core/alphanumerictextbox.component.js"></script>
+    <script src="/app/core/authservice.js"></script>
+    <script src="/app/core/config.auth.js"></script>
+    <script src="/app/core/config.js"></script>
+    <script src="/app/core/constants.js"></script>
+    <script src="/app/core/core.route.js"></script>
+    <script src="/app/core/dialogboxmodal.component.js"></script>
+    <script src="/app/core/packery.pkgd.js"></script>
+    <!--<script src="/app/core/popoverclose.directive.js"></script>
+    <script src="/app/core/popoverelem.directive.js"></script>-->
+    <script src="/app/core/styleCore/ui-harmonize-tpls-1.0.0.js"></script>
+    <script src="/app/core/styleCore/ui-harmonize-tpls-1.0.0.min.js"></script>-
+    <script src="/app/core/startswith.filter.js"></script>
+    <script src="/app/core/wildcard.filter.js"></script>
+    <script src="/app/core/wildcardtextbox.component.js"></script>
+    <script src="/app/datamapping/datamapping.controller.js"></script>
+    <script src="/app/datamapping/datamapping.factory.js"></script>
+    <script src="/app/datamapping/datamapping.route.js"></script>
+    <script src="/app/datamapping/datamapping.service.js"></script>
+    <script src="/app/datamapping/datamappingdetailmodal.component.js"></script>
+    <script src="/app/datamapping/trdrdialogmodal.component.js"></script>
+    <script src="/app/layout/shell.controller.js"></script>
+    <script src="/app/report/report.controller.js"></script>
+    <script src="/app/report/report.route.js"></script>
+    <script src="/app/test-helpers/bind-polyfill.js"></script>
+    <script src="/app/test-helpers/mock-data.js"></script>
+    <script src="/app/widgets/ht-img-person.directive.js"></script>
+    <script src="/app/widgets/ht-widget-header.directive.js"></script>
+    <!-- endinject -->
+    <!-- inject:templates:js -->
+    <script src="/.tmp/templates.js"></script>
+    <!-- endinject -->
+    <!-- endbuild -->
+
+</body>
+</html>

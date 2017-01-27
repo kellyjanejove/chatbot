@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./app/core/authservice.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../prettify.css">
+    <link rel="stylesheet" href="../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">./app/core/authservice.js</span></h1>
+    <h2>
+        Statements: <span class="metric">81.48% <small>(44 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">72.73% <small>(8 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">69.23% <small>(9 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">81.48% <small>(44 / 54)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../index.html">All files</a> &#187; <a href="index.html">./app/core/</a> &#187; authservice.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">﻿
+(function () {
+    'use strict';
+&nbsp;
+    var core = angular.module('app.core');
+&nbsp;
+    core.factory('authservice', authservice);
+    authservice.$inject = ['logger', 'config', '$rootScope', '$injector', '$q'];
+&nbsp;
+    function authservice(logger, config, $rootScope, $injector, $q) {
+        var service = {
+            getAuthTokens: getAuthTokens,
+            request: request,
+            responseError: responseError
+        };
+&nbsp;
+        return service;
+&nbsp;
+        function getAuthTokens () {
+                var deferred = $q.defer();
+&nbsp;
+                var tokens = {};
+                var serviceIdentiferMap = config.authSettings.serviceNameAndBaseUrlMap;
+&nbsp;
+                $injector.get('$http')({
+                    method: 'POST',
+                    url: config.authSettings.authUrl,
+                    ignoreInterceptor:true,
+                    data:
+                        {
+                            ForceTokenRefresh: false,
+                            RelyingParties: Object.keys(serviceIdentiferMap)
+                        }
+                }).success(function (data) {
+                    <span class="missing-if-branch" title="else path not taken" >E</span>if (data.IsUserAuthenticated)
+                    {
+                        logger.log('refreshed jwt tokens: ' + data);
+                        var serviceTokenMap = {};
+                        angular.forEach(data.JwtToken, function (value, key) {
+                            var serviceName = data.JwtToken[key].RelyingParty;
+&nbsp;
+                            //Get root url for service name from the configured- serviceNameAndBaseUrlMap
+                            var serviceRootUrl = serviceIdentiferMap[serviceName];
+&nbsp;
+                            //Create a Service Token map which will store mapping of service-url:jwtToken...
+                            //This map would be used by Interceptor to inject token for the corresponding service url
+                            serviceTokenMap[serviceRootUrl] = data.JwtToken[key].Token;
+                        });
+&nbsp;
+                        $rootScope.serviceTokensMap = serviceTokenMap;
+                        //log(serviceTokenMap);
+                        deferred.resolve();
+                    }
+                    else
+                    {
+                        //Our session has expired, so alert the user and reload the page
+                        //so that he is taken to login page
+<span class="cstat-no" title="statement not covered" >                        $injector.get('ngDialog').open({</span>
+                            template: 'Your session has expired. Please login again',
+                            plain: true,
+                            preCloseCallback: <span class="fstat-no" title="function not covered" >function () {</span>
+                                //reload to redirect user to login page
+<span class="cstat-no" title="statement not covered" >                                location.reload();</span>
+                            }
+                        });
+                    }
+&nbsp;
+                }).error(<span class="fstat-no" title="function not covered" >function (e) {</span>
+<span class="cstat-no" title="statement not covered" >                    logger.log('Failed to obtain user info: ');</span>
+<span class="cstat-no" title="statement not covered" >                    deferred.reject('Failed to obtain user info.');</span>
+                });
+                return deferred.promise;
+            }
+&nbsp;
+        //Request Interceptor to add auth bearer token to request header
+        function request(config) {
+            logger.log('In Request interceptor');
+            for (var serviceRootUrl in $rootScope.serviceTokensMap) {
+                <span class="missing-if-branch" title="else path not taken" >E</span>if (config.url.toLowerCase().match(serviceRootUrl.toLowerCase())) {
+                    config.headers.Authorization = 'Bearer ' +
+                        $rootScope.serviceTokensMap[serviceRootUrl];
+                    break;
+                }
+            }
+            return config;
+        }
+&nbsp;
+        //Response Interceptor to manage token refreshal
+        function responseError(response) {
+&nbsp;
+            //Handles 401 response by renewing the token and retrying the service call again
+            //ignoreInterceptor proeprty is set to bypass the response interceptor in scenario
+            //when the service retry call is made
+            //from within the interceptor
+&nbsp;
+            var deferred = $q.defer(); // defer until we can re-request a new token
+&nbsp;
+            if (!(response.config.hasOwnProperty('ignoreInterceptor') &amp;&amp;
+                response.config.ignoreInterceptor)) {
+                switch (response.status) {
+                    case 401:
+                        //Refresh jwt tokens
+                        service.getAuthTokens().then(
+                        function () {
+                            response.config.ignoreInterceptor = true;
+                            logger.log('Retrying service request with new Tokens');
+                            $injector.get('$http')(response.config).then(function (response) {
+                                logger.log('Retry was success');
+                                // we have a successful response - resolve it using deferred
+                                deferred.resolve(response);
+                            },
+<span class="fstat-no" title="function not covered" >                            function (error) {</span>
+<span class="cstat-no" title="statement not covered" >                                logger.log('error on retrying service request: ' + error);</span>
+<span class="cstat-no" title="statement not covered" >                                deferred.reject(error);</span>
+                                // something went wrong
+                            });
+&nbsp;
+                        }, <span class="fstat-no" title="function not covered" >function (response, status) {</span>
+                            //log('error on fetching jwt token.');
+<span class="cstat-no" title="statement not covered" >                            logger.log('failed to refresh jwt');</span>
+                            // not a recoverable error
+<span class="cstat-no" title="statement not covered" >                            deferred.reject('failed to refresh jwt, error: ' + response);</span>
+&nbsp;
+                        });
+                        break;
+<span class="branch-1 cbranch-no" title="branch not covered" >                    case 403:</span>
+                        // not a recoverable error
+<span class="cstat-no" title="statement not covered" >                        deferred.reject('Access to service is forbidden: ' + response);</span>
+<span class="cstat-no" title="statement not covered" >                        break;</span>
+                    default:
+                        deferred.reject(response);// not a recoverable error
+&nbsp;
+                }
+            }
+            else {
+                logger.log('Ignored response interceptor');
+                deferred.reject(response);
+            }
+            return deferred.promise;//// return the deferred promise
+        }
+    }
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 09 2016 21:59:48 GMT+0800 (Taipei Standard Time)</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

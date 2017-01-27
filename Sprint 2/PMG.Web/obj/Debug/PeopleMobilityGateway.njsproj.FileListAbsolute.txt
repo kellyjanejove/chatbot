@@ -1,0 +1,4 @@
+C:\PeopleMobilitySC_6900\PeopleMobilityGateway\obj\Debug\PeopleMobilityGateway.njsprojResolveAssemblyReference.cache
+C:\PeopleMobilitySC_6900\PeopleMobilityGateway\bin\Microsoft.NodejsTools.WebRole.dll
+C:\Users\kelly.jane.b.jove\GTF\People Mobility Gateway Application\Development\Release 1\Baseline\Source Code\obj\Debug\PeopleMobilityGateway.njsprojResolveAssemblyReference.cache
+C:\Users\kelly.jane.b.jove\GTF\People Mobility Gateway Application\Development\Release 1\Baseline\Source Code\bin\Microsoft.NodejsTools.WebRole.dll

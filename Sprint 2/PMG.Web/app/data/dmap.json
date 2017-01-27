@@ -1,0 +1,302 @@
+{
+  "DataMapping": {
+    "Field": [
+      {
+        "Required": "false",
+        "Name": "CompanyCd",
+        "Code": "2COMCD",
+        "Text": "Company Code",
+        "Type": "List",
+        "Operator": "=|IN|BETWEEN|NOT BETWEEN",
+        "Default": "True"
+      },
+      {
+        "Required": "false",
+        "Name": "CompanyNm",
+        "Code": "2COMNM",
+        "Text": "Company Name",
+        "Type": "List",
+        "Operator": "=",
+        "Default": "True"
+      },
+      {
+        "Name": "CountryNm",
+        "Code": "2COUNTRYNAM",
+        "Text": "Country Name",
+        "Type": "List",
+        "Operator": "=|IN",
+        "Default": "True"
+      },
+      {
+        "Name": "AssigneePersonnelNbr",
+        "Code": "2PERSNO",
+        "Text": "Personnel Number",
+        "Type": "LookUp",
+        "Operator": "=|IN|NOT IN|LIKE",
+        "Default": "True"
+      },
+      {
+        "Name": "AssigneeNm",
+        "Code": "2NAME",
+        "Text": "Assignee Name",
+        "Type": "LookUp",
+        "Operator": "=|IN|NOT IN|LIKE",
+        "Default": "True"
+      },
+      {
+        "Name": "AccountId",
+        "Code": "2ACCNO",
+        "Text": "Account Number",
+        "Type": "List",
+        "Operator": "=|>=|<=|IN|NOT IN|LIKE|BETWEEN|NOT BETWEEN",
+        "Default": "True"
+      },
+      {
+        "Name": "AccountDesc",
+        "Code": "2ACCNAM",
+        "Text": "Account Name",
+        "Type": "List",
+        "Operator": "=|IN|NOT IN",
+        "Default": "True"
+      },
+      {
+        "Name": "PostingDt",
+        "Code": "2POSTINGDT",
+        "Text": "Document Posting Date",
+        "Type": "Date",
+        "Operator": "=|>|<|>=|<=|IN|NOT IN|BETWEEN|NOT BETWEEN",
+        "Default": "True"
+      },
+      {
+        "Name": "DocumentNbr",
+        "Code": "2DOCNO",
+        "Text": "Document Number",
+        "Type": "Text",
+        "Operator": "=|IN|NOT IN|BETWEEN",
+        "Default": "True"
+      },
+      {
+        "Name": "SendingCompanyCodeDocumentNbr",
+        "Code": "2SENDCOMCDDOCNO",
+        "Text": "Sending Co Code Doc No.",
+        "Type": "Text",
+        "Operator": "=|IN|NOT IN|BETWEEN",
+        "Default": "True"
+      },
+      {
+        "Name": "JournalTransactionTypeDesc",
+        "Code": "2TRANSTYPE",
+        "Text": "Transaction Type",
+        "Type": "List",
+        "Operator": "=|IN|NOT IN|IS NULL",
+        "Default": "True"
+      },
+      {
+        "Name": "TaxYearNbr",
+        "Code": "2TAXYR",
+        "Text": "Tax Year",
+        "Type": "List",
+        "Operator": "=|>|<|>=|<=|IN|NOT IN|BETWEEN|NOT BETWEEN",
+        "Default": "False"
+      },
+      {
+        "Name": "ClientNm",
+        "Code": "2CLIENTNAM",
+        "Text": "Client Name",
+        "Type": "LookUp",
+        "Operator": "=|IN|NOT IN|LIKE",
+        "Default": "False"
+      },
+      {
+        "Name": "SendingCompanyCd",
+        "Code": "2SENDCOMCD",
+        "Text": "Sending Company Code",
+        "Type": "List",
+        "Operator": "=|IN|NOT IN",
+        "Default": "False"
+      },
+      {
+        "Name": "CommentsTxt",
+        "Code": "2COMMENTS",
+        "Text": "Comments",
+        "Type": "Text",
+        "Operator": "=|IN|NOT IN|LIKE|NOT LIKE",
+        "Default": "False"
+      },
+      {
+        "Name": "MappingStatusInd",
+        "Code": "1MAPSTAT",
+        "Text": "Mapping Status",
+        "Type": "List",
+        "Operator": "=|IN|NOT IN",
+        "Default": "True"
+      },
+      {
+        "Name": "DocumentTypeCd",
+        "Code": "2DOCTYPE",
+        "Text": "Document Type",
+        "Type": "Text",
+        "Operator": "=|IN|LIKE|NOT LIKE|BETWEEN|NOT BETWEEN",
+        "Default": "False"
+      },
+      {
+        "Name": "ParkedById",
+        "Code": "2PARKBYID",
+        "Text": "Parked by ID",
+        "Type": "Text",
+        "Operator": "=|IN|NOT IN|LIKE",
+        "Default": "False"
+      },
+      {
+        "Name": "PostedById",
+        "Code": "2POSTBYID",
+        "Text": "Posted by ID",
+        "Type": "Text",
+        "Operator": "=|IN|NOT IN|LIKE",
+        "Default": "False"
+      },
+      {
+        "Name": "ProfitCenterId",
+        "Code": "2PROFITCNTR",
+        "Text": "Transaction Profit Center",
+        "Type": "Text",
+        "Operator": "=|IN|NOT IN|LIKE|BETWEEN|NOT BETWEEN",
+        "Default": "False"
+      },
+      {
+        "Name": "UpdateUserId",
+        "Code": "2UPDTBY",
+        "Text": "Updated by",
+        "Type": "Text",
+        "Operator": "=|IN|NOT IN|IS NULL|IS NOT NULL",
+        "Default": "False"
+      },
+      {
+        "Name": "UpdateDttm",
+        "Code": "1LASTUPDT",
+        "Text": "Last Updated",
+        "Type": "Date",
+        "Operator": "=|<>|<|>|<=|>=|BETWEEN|NOT BETWEEN|IS NULL|IS NOT NULL",
+        "Default": "False"
+      },
+      {
+        "Required": "False",
+        "Name": "AssignmentProfileIndicator",
+        "Code": "ASSIGNMENTPROFILEINDICATOR",
+        "Text": "Assignment Profile Indicator",
+        "Type": "LookUp",
+        "Operator": "=|<|>|>=|<=|IN|NOT IN|LIKE",
+        "Default": "False"
+      },
+      {
+        "Required": "False",
+        "Name": "AssignmentStartDt",
+        "Code": "ASSIGNMENTSTARTDT",
+        "Text": "Start Date",
+        "Type": "Date",
+        "Operator": "=|<>|<|>|>=|<=|BETWEEN|NOT BETWEEN",
+        "Default": "False"
+      },
+      {
+        "Name": "AssignmentEndDt",
+        "Code": "ASSIGNMENTENDDT",
+        "Text": "End Date",
+        "Type": "Date",
+        "Operator": "=|<>|<|>|>=|<=|BETWEEN|NOT BETWEEN",
+        "Default": "False"
+      },
+      {
+        "Required": "False",
+        "Name": "HostCountryTax",
+        "Code": "HOSTCOUNTRYTAX",
+        "Text": "Taxable Status",
+        "Type": "List",
+        "Operator": "=|IN",
+        "Default": "False"
+      },
+      {
+        "Required": "False",
+        "Name": "HomeCompensatory",
+        "Code": "HOMECOMPENSATORY",
+        "Text": "Compensatory in Home",
+        "Type": "List",
+        "Operator": "=|IN",
+        "Default": "False"
+      },
+      {
+        "Required": "False",
+        "Name": "ProjectNm",
+        "Code": "PROJECTNM",
+        "Text": "Project Name",
+        "Type": "LookUp",
+        "Operator": "=|IN|NOT IN|LIKE",
+        "Default": "False"
+      },
+      {
+        "Required": "False",
+        "Name": "ProjectOrganization",
+        "Code": "PROJECTORGANIZATION",
+        "Text": "Project Organization",
+        "Type": "LookUp",
+        "Operator": "=|IN|NOT IN|LIKE",
+        "Default": "False"
+      },
+      {
+        "Required": "False",
+        "Name": "HostCountry",
+        "Code": "HOSTCOUNTRY",
+        "Text": "Host Country Name",
+        "Type": "LookUp",
+        "Operator": "=|<>|IN|NOT IN",
+        "Default": "False"
+      },
+      {
+        "Name": "Reference",
+        "Code": "2REF",
+        "Text": "Reference",
+        "Type": "LookUp",
+        "Operator": "=|IN",
+        "Default": "False"
+      },
+      {
+        "Name": "EnterpriseIDparkedby",
+        "Code": "2ENTIDOFPARKBY",
+        "Text": "Enterprise ID of Parked By",
+        "Type": "LookUp",
+        "Operator": "=|IN|NOT IN|IS NULL|IS NOT NULL",
+        "Default": "False"
+      },
+      {
+        "Name": "EnterpriseIDenteredby",
+        "Code": "2ENTIDOFENTERBY",
+        "Text": "Enterprise ID of Posted By",
+        "Type": "LookUp",
+        "Operator": "=|IN|NOT IN|IS NULL|IS NOT NULL",
+        "Default": "False"
+      },
+      {
+        "Name": "Functarea",
+        "Code": "2FUNCTAREA",
+        "Text": "Functional Area",
+        "Type": "List",
+        "Operator": "=|IN|NOT IN",
+        "Default": "False"
+      },
+      {
+        "Name": "Yearmnth",
+        "Code": "2YRMNT",
+        "Text": "Year/Month",
+        "Type": "Date",
+        "Operator": "=",
+        "Default": "False"
+      },
+      {
+        "Code": "GeoUnit",
+        "Text": "Geographic Unit",
+        "Type": "List",
+        "Operator": "=|IN",
+        "Default": "False"
+      }
+    ]
+  }
+}

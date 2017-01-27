@@ -1,0 +1,32 @@
+
+<div ng-controller="ShellController as vm">
+    <!--Navbar-->
+    <header class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-inner">
+
+            <nav class="">
+                <a href="#" role="button" class="menu-button" ng-click="vm.leftMenu($event)"><i class="acn-menu"></i></a>
+
+                <a href="/" role="button" class="navbar-brand">
+                    People Mobility Gateway
+                </a>
+            </nav>
+
+        </div>
+    </header>
+    <!--Page content will be loaded in the ui-view-->
+    <section id="content" class="">
+        <div ui-view class="shuffle-animation"></div>
+    </section>
+
+    <!--Side Bar-->
+    <menu visible="visible" alignment="left">
+        <menu-item data-ng-click="vm.leftMenu($event)" ng-class="vm.isCurrent(r)"
+                   ng-repeat="r in vm.navRoutes | orderBy:'+settings.nav'">
+            <a href="{{r.url}}"
+               ng-bind-html="r.settings.content"></a>
+        </menu-item>
+    </menu>
+</div>
+
+

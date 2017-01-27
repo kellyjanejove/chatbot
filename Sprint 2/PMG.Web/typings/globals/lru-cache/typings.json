@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/7ccc70e89f23369cd0f4a01a4795ca78ad1867b1/lru-cache/lru-cache.d.ts",
+    "raw": "registry:dt/lru-cache#4.0.1+20160812224217",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/7ccc70e89f23369cd0f4a01a4795ca78ad1867b1/lru-cache/lru-cache.d.ts"
+  }
+}

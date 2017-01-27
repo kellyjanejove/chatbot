@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="PhantomJS 1.9.7 (Windows 8 0.0.0)" package="" timestamp="2016-11-09T13:59:46" id="0" hostname="CIOS-51412VC-LX">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.7 Safari/534.34"/>
+    </properties>
+  </testsuite>
+  <testsuite name="PhantomJS 1.9.7 (Windows 8 0.0.0)" package="" timestamp="2016-11-09T13:59:47" id="0" hostname="CIOS-51412VC-LX" tests="28" errors="0" failures="0" time="0.426">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.7 Safari/534.34"/>
+    </properties>
+    <testcase name="should be created successfully" time="0.044" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).AdminController Admin controller"/>
+    <testcase name="should have title of Admin" time="0.009" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).AdminController Admin controller after activate"/>
+    <testcase name="should map state admin to url /admin " time="0.006" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).admin routes state"/>
+    <testcase name="should map /admin route to admin View template" time="0.007" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).admin routes state"/>
+    <testcase name="of admin should work with $state.go" time="0.007" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).admin routes state"/>
+    <testcase name="should have authservice be defined" time="0.004" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).authservice"/>
+    <testcase name="should have no tokens on start" time="0.013" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).authservice"/>
+    <testcase name="should set tokens for configured services" time="0.013" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).authservice"/>
+    <testcase name="should result in error when auth controller doesnot return tokens for all services" time="0.007" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).authservice"/>
+    <testcase name="should set proper token to authorization header when configured service is called" time="0.006" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).authservice"/>
+    <testcase name="should match url in a case-insensitive manner when adding auth tokens to header" time="0.008" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).authservice"/>
+    <testcase name="should refresh jwt tokens and retry service request if service call results in 401 error" time="0.007" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).authservice"/>
+    <testcase name="should bypass responseerror logic if ignoreInterceptor property is set true" time="0.006" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).authservice"/>
+    <testcase name="should not handle response when error status is other than 401 or 402" time="0.004" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).authservice"/>
+    <testcase name="should map /404 route to 404 View template" time="0.008" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).core state"/>
+    <testcase name="of dashboard should work with $state.go" time="0.013" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).core state"/>
+    <testcase name="should route /invalid to the otherwise (404) route" time="0.014" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).core state"/>
+    <testcase name="should be created successfully" time="0.029" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).DashboardController Dashboard controller"/>
+    <testcase name="should have title of Dashboard" time="0.059" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).DashboardController Dashboard controller after activate"/>
+    <testcase name="should map state dashboard to url /dashboard " time="0.017" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).dashboard routes state"/>
+    <testcase name="should map /dashboard route to dashboard View template" time="0.018" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).dashboard routes state"/>
+    <testcase name="of dashboard should work with $state.go" time="0.015" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).dashboard routes state"/>
+    <testcase name="should be created successfully" time="0.011" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).HomeController Home controller"/>
+    <testcase name="should have title of Home" time="0.011" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).HomeController Home controller after activate"/>
+    <testcase name="should map state home to url / " time="0.023" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).home routes state"/>
+    <testcase name="should map /home route to home View template" time="0.021" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).home routes state"/>
+    <testcase name="of home should work with $state.go" time="0.019" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).home routes state"/>
+    <testcase name="should be created successfully" time="0.027" classname="PhantomJS 1.9.7 (Windows 8 0.0.0).ShellController Shell controller"/>
+    <system-out><![CDATA[PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'In SPY'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+,PhantomJS 1.9.7 (Windows 8 0.0.0) LOG: 'The returned id_token is not parseable.'
+
+]]></system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>

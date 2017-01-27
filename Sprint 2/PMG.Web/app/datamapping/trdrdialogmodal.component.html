@@ -1,0 +1,18 @@
+<script type="text/ng-template" id="trdrdialog.modal.html">
+    <div class="modal-header">
+        <label>
+            <input type="checkbox" ng-model="modalInstanceCtrl.isSelectAll" ng-change="modalInstanceCtrl.selectAll()" />{{modalInstanceCtrl.title}}
+        </label>
+    </div>
+    <div>
+        <div class="col-md-6" ng-repeat="dataMapping in modalInstanceCtrl.firstColumnData">
+            <input type="checkbox" ng-model="dataMapping.isSelected" ng-disabled="dataMapping.Default" ng-click="modalInstanceCtrl.checkIfSelectAll()" />{{dataMapping.Name}}
+        </div>
+        <div class="col-md-6" ng-repeat="dataMapping in modalInstanceCtrl.secondColumnData">
+            <input type="checkbox" ng-model="dataMapping.isSelected" ng-disabled="dataMapping.Default" ng-click="modalInstanceCtrl.checkIfSelectAll()" />{{dataMapping.Name}}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="modalInstanceCtrl.confirm()">Close</button>
+    </div>
+</script>
