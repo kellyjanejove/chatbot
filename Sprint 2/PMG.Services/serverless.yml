@@ -17,8 +17,8 @@ package:
     - .env
 
 functions:
-  accounts:
-    handler: accounts/index.handler
+  get-accounts:
+    handler: account/get-accounts.handler
     name: ${self:custom.prefix}-GET-Accounts
     description: SERVERLESS-Returns a list of 10 Accounts with Number and Name
     events:
@@ -27,8 +27,9 @@ functions:
           method: get
     package:
       include:
-        - accounts/index.js
-        - accounts/node_modules/**
+        - account/get-accounts.js
+        - account/node_modules/**
+        
 
 custom:
    stage: ${opt:stage, self:provider.stage, env:USER}
