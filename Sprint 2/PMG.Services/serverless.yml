@@ -161,6 +161,31 @@ functions:
         - company/get-sending-company-codes.js
         - company/node_modules/**
 
+  get-transaction-type-data:
+    handler: transactiontype/get-transaction-type-data.handler
+    name: ${self:custom.prefix}-GET-Transaction-Type-Data
+    description: SERVERLESS-Returns a list of Transaction Type Data based on account number
+    events:
+      - http:
+          path: transactionTypeData
+          method: get
+    package:
+      include:
+        - transactiontype/get-transaction-type-data.js
+        - transactiontype/node_modules/**
+
+  get-transaction-types:
+    handler: transactiontype/get-transaction-types.handler
+    name: ${self:custom.prefix}-GET-Transaction-Types
+    description: SERVERLESS-Returns a list of Transaction Types
+    events:
+      - http:
+          path: transactionTypes
+          method: get
+    package:
+      include:
+        - transactiontype/get-transaction-types.js
+        - transactiontype/node_modules/**
 custom:
    stage: ${opt:stage, self:provider.stage, env:USER}
    prefix: 6900-PMG-${self:custom.stage}
