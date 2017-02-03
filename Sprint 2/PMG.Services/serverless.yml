@@ -56,6 +56,45 @@ functions:
         - assignee/get-assignee-personnel-numbers.js
         - assignee/node_modules/**
 
+  get-company-codes:
+    handler: company/get-company-codes.handler
+    name: ${self:custom.prefix}-GET-Company-Codes
+    description: SERVERLESS-Returns a list of Company Codes based on enterprise id
+    events:
+      - http:
+          path: companyCodes
+          method: get
+    package:
+      include:
+        - company/get-company-codes.js
+        - company/node_modules/**
+
+  get-company-names:
+    handler: company/get-company-names.handler
+    name: ${self:custom.prefix}-GET-Company-Names
+    description: SERVERLESS-Returns a list of Company Names
+    events:
+      - http:
+          path: companyNames
+          method: get
+    package:
+      include:
+        - company/get-company-names.js
+        - company/node_modules/**
+
+  get-sending-company-codes:
+    handler: company/get-sending-company-codes.handler
+    name: ${self:custom.prefix}-GET-Sending-Company-Codes
+    description: SERVERLESS-Returns a list of Sending Company Codes
+    events:
+      - http:
+          path: sendingCompanyCodes
+          method: get
+    package:
+      include:
+        - company/get-sending-company-codes.js
+        - company/node_modules/**
+
 custom:
    stage: ${opt:stage, self:provider.stage, env:USER}
    prefix: 6900-PMG-${self:custom.stage}
