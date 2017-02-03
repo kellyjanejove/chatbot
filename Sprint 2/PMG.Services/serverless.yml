@@ -161,6 +161,19 @@ functions:
         - company/get-sending-company-codes.js
         - company/node_modules/**
 
+  get-tax-years:
+    handler: taxyear/get-tax-years.handler
+    name: ${self:custom.prefix}-GET-Tax-Years
+    description: SERVERLESS-Returns a list of Tax Years
+    events:
+      - http:
+          path: taxYears
+          method: get
+    package:
+      include:
+        - taxyear/get-tax-years.js
+        - taxyear/node_modules/**
+
   get-transaction-type-data:
     handler: transactiontype/get-transaction-type-data.handler
     name: ${self:custom.prefix}-GET-Transaction-Type-Data
