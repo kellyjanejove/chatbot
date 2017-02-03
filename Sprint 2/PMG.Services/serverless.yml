@@ -30,6 +30,31 @@ functions:
         - account/get-accounts.js
         - account/node_modules/**
         
+  get-assignee-names:
+    handler: assignee/get-assignee-names.handler
+    name: ${self:custom.prefix}-GET-Assignee-Names
+    description: SERVERLESS-Returns a list of 10 Assignee Names based on specified value
+    events:
+      - http:
+          path: assigneeNames
+          method: get
+    package:
+      include:
+        - assignee/get-assignee-names.js
+        - assignee/node_modules/**
+
+  get-assignee-personnel-numbers:
+    handler: assignee/get-assignee-personnel-numbers.handler
+    name: ${self:custom.prefix}-GET-Assignee-Personnel-Numbers
+    description: SERVERLESS-Returns a list of 10 Assignee Personnel Numbers based on specified value
+    events:
+      - http:
+          path: assigneePersonnelNumbers
+          method: get
+    package:
+      include:
+        - assignee/get-assignee-personnel-numbers.js
+        - assignee/node_modules/**
 
 custom:
    stage: ${opt:stage, self:provider.stage, env:USER}
