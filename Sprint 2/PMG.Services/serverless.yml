@@ -122,6 +122,45 @@ functions:
         - location/get-countries.js
         - location/node_modules/**
 
+  get-eids-of-entered-by:
+    handler: journaltransaction/get-eids-of-entered-by.handler
+    name: ${self:custom.prefix}-GET-Eids-Of-Entered-By
+    description: SERVERLESS-Returns a list of 10 Eids of Entered By based on specified value
+    events:
+      - http:
+          path: eidsOfEnteredBy
+          method: get
+    package:
+      include:
+        - journaltransaction/get-eids-of-entered-by.js
+        - journaltransaction/node_modules/**
+
+  get-eids-of-parked-by:
+    handler: journaltransaction/get-eids-of-parked-by.handler
+    name: ${self:custom.prefix}-GET-Eids-Of-Parked-By
+    description: SERVERLESS-Returns a list of 10 Eids of Parked By based on specified value
+    events:
+      - http:
+          path: eidsOfParkedBy
+          method: get
+    package:
+      include:
+        - journaltransaction/get-eids-of-parked-by.js
+        - journaltransaction/node_modules/**
+
+  get-functional-areas:
+    handler: journaltransaction/get-functional-areas.handler
+    name: ${self:custom.prefix}-GET-Functional-Areas
+    description: SERVERLESS-Returns a list of functional areas
+    events:
+      - http:
+          path: functionalAreas
+          method: get
+    package:
+      include:
+        - journaltransaction/get-functional-areas.js
+        - journaltransaction/node_modules/**
+
   get-geographic-units:
     handler: location/get-geographic-units.handler
     name: ${self:custom.prefix}-GET-Geographic-Units
@@ -147,6 +186,32 @@ functions:
       include:
         - hhte/get-host-countries.js
         - hhte/node_modules/**
+
+  get-mapping-status:
+    handler: journaltransaction/get-mapping-status.handler
+    name: ${self:custom.prefix}-GET-Mapping-Status
+    description: SERVERLESS-Returns a list of mapping status
+    events:
+      - http:
+          path: mappingStatus
+          method: get
+    package:
+      include:
+        - journaltransaction/get-mapping-status.js
+        - journaltransaction/node_modules/**
+
+  get-references:
+    handler: journaltransaction/get-references.handler
+    name: ${self:custom.prefix}-GET-References
+    description: SERVERLESS-Returns a list of 10 References based on specified value
+    events:
+      - http:
+          path: references
+          method: get
+    package:
+      include:
+        - journaltransaction/get-references.js
+        - journaltransaction/node_modules/**
 
   get-sending-company-codes:
     handler: company/get-sending-company-codes.handler
@@ -199,6 +264,19 @@ functions:
       include:
         - transactiontype/get-transaction-types.js
         - transactiontype/node_modules/**
+
+  put-journal-transaction-details:
+    handler: journaltransaction/put-journal-transaction-details.handler
+    name: ${self:custom.prefix}-PUT-Journal-Transaction-Details
+    description: SERVERLESS-Updates the specific details in JournalTransactionDetail Table
+    events:
+      - http:
+          path: journalTransactionDetails
+          method: get
+    package:
+      include:
+        - journaltransaction/put-journal-transaction-details.js
+        - journaltransaction/node_modules/**
 custom:
    stage: ${opt:stage, self:provider.stage, env:USER}
    prefix: 6900-PMG-${self:custom.stage}
