@@ -56,6 +56,32 @@ functions:
         - assignee/get-assignee-personnel-numbers.js
         - assignee/node_modules/**
 
+  get-client-data:
+    handler: client/get-client-data.handler
+    name: ${self:custom.prefix}-GET-Client-Data
+    description: SERVERLESS-Returns a list of client data based on personnel number
+    events:
+      - http:
+          path: clientData
+          method: get
+    package:
+      include:
+        - client/get-client-data.js
+        - client/node_modules/**
+
+  get-client-names:
+    handler: client/get-client-names.handler
+    name: ${self:custom.prefix}-GET-Client-Names
+    description: SERVERLESS-Returns a list of 10 client names based on a specific value
+    events:
+      - http:
+          path: clientNames
+          method: get
+    package:
+      include:
+        - client/get-client-names.js
+        - client/node_modules/**
+
   get-company-codes:
     handler: company/get-company-codes.handler
     name: ${self:custom.prefix}-GET-Company-Codes
@@ -108,6 +134,19 @@ functions:
       include:
         - location/get-geographic-units.js
         - location/node_modules/**
+
+  get-host-countries:
+    handler: hhte/get-host-countries.handler
+    name: ${self:custom.prefix}-GET-Host-Countries
+    description: SERVERLESS-Returns a list of host countries
+    events:
+      - http:
+          path: hostCountries
+          method: get
+    package:
+      include:
+        - hhte/get-host-countries.js
+        - hhte/node_modules/**
 
   get-sending-company-codes:
     handler: company/get-sending-company-codes.handler
