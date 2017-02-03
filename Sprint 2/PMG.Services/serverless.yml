@@ -82,6 +82,33 @@ functions:
         - company/get-company-names.js
         - company/node_modules/**
 
+  
+  get-countries:
+    handler: location/get-countries.handler
+    name: ${self:custom.prefix}-GET-Countries
+    description: SERVERLESS-Returns a list of Countries
+    events:
+      - http:
+          path: countries
+          method: get
+    package:
+      include:
+        - location/get-countries.js
+        - location/node_modules/**
+
+  get-geographic-units:
+    handler: location/get-geographic-units.handler
+    name: ${self:custom.prefix}-GET-Geographic-Units
+    description: SERVERLESS-Returns a list of Geographic Units
+    events:
+      - http:
+          path: geographicUnits
+          method: get
+    package:
+      include:
+        - location/get-geographic-units.js
+        - location/node_modules/**
+
   get-sending-company-codes:
     handler: company/get-sending-company-codes.handler
     name: ${self:custom.prefix}-GET-Sending-Company-Codes
