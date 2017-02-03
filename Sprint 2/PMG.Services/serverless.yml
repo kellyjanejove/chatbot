@@ -1,0 +1,42 @@
+service: pmg-6900
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  role: arn:aws:iam::093584548873:role/6900-Dev-Lambda-Execution-Role
+  memorySize: 256 # Overwrite the default memory size. Default is 1024
+  timeout: 10 # The default is 6
+  deploymentBucket: 6900-pmg-dev-dropfolder
+  stage: dev
+
+package:
+  individually: true
+  exclude:
+    - "**/*"
+  include:
+    - .env
+
+functions:
+  accounts:
+    handler: accounts/index.handler
+    name: ${self:custom.prefix}-GET-Accounts
+    description: SERVERLESS-Returns a list of 10 Accounts with Number and Name
+    events:
+      - http:
+          path: accounts
+          method: get
+    package:
+      include:
+        - accounts/index.js
+        - accounts/node_modules/**
+
+custom:
+   stage: ${opt:stage, self:provider.stage, env:USER}
+   prefix: 6900-PMG-${self:custom.stage}
+
+resources:
+  Resources:
+    ApiGatewayRestApi:
+      Type: AWS::ApiGateway::RestApi
+      Properties:
+        Name: 6900-PMG-${self:custom.stage}
