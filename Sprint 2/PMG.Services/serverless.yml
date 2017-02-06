@@ -56,6 +56,19 @@ functions:
         - assignee/get-assignee-personnel-numbers.js
         - assignee/node_modules/**
 
+  get-assignment-profile-indicators:
+    handler: assignment/get-assignment-profile-indicators.handler
+    name: ${self:custom.prefix}-GET-Assignment-Profile-Indicators
+    description: SERVERLESS-Returns a list of 10 Assignment Profile Indicators based on specified value
+    events:
+      - http:
+          path: assignmentProfileIndicators
+          method: get
+    package:
+      include:
+        - assignment/get-assignment-profile-indicators.js
+        - assignment/node_modules/**
+
   get-client-data:
     handler: client/get-client-data.handler
     name: ${self:custom.prefix}-GET-Client-Data
@@ -200,6 +213,32 @@ functions:
         - journaltransaction/get-mapping-status.js
         - journaltransaction/node_modules/**
 
+  get-project-names:
+    handler: assignment/get-project-names.handler
+    name: ${self:custom.prefix}-GET-Project-Names
+    description: SERVERLESS-Returns a list of 10 Project Names based on specified value
+    events:
+      - http:
+          path: projectNames
+          method: get
+    package:
+      include:
+        - assignment/get-project-names.js
+        - assignment/node_modules/**
+
+  get-project-organizations:
+    handler: assignment/get-project-organizations.handler
+    name: ${self:custom.prefix}-GET-Project-Organizations
+    description: SERVERLESS-Returns a list of 10 Project Organizations based on specified value
+    events:
+      - http:
+          path: projectOrganizations
+          method: get
+    package:
+      include:
+        - assignment/get-project-organizations.js
+        - assignment/node_modules/**
+  
   get-references:
     handler: journaltransaction/get-references.handler
     name: ${self:custom.prefix}-GET-References
