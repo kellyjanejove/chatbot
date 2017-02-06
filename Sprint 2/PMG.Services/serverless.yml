@@ -69,6 +69,8 @@ functions:
         - assignment/get-assignment-profile-indicators.js
         - assignment/node_modules/**
 
+
+
   get-client-data:
     handler: client/get-client-data.handler
     name: ${self:custom.prefix}-GET-Client-Data
@@ -316,6 +318,21 @@ functions:
       include:
         - journaltransaction/put-journal-transaction-details.js
         - journaltransaction/node_modules/**
+
+  search-data-mapping:
+    handler: search/search-data-mapping.handler
+    name: ${self:custom.prefix}-GET-Search-Data-Mapping
+    description: SERVERLESS- Returns a list of search results based on specified criteria
+    events:
+      - http:
+          path: searchDataMapping
+          method: get
+    package:
+      include:
+        - search/search-data-mapping.js
+        - search/search.js
+        - search/node_modules/**
+
 custom:
    stage: ${opt:stage, self:provider.stage, env:USER}
    prefix: 6900-PMG-${self:custom.stage}
