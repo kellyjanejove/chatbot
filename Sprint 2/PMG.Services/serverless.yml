@@ -1,0 +1,328 @@
+service: pmg-6900
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  role: arn:aws:iam::093584548873:role/6900-Dev-Lambda-Execution-Role
+  memorySize: 256 # Overwrite the default memory size. Default is 1024
+  timeout: 10 # The default is 6
+  deploymentBucket: 6900-pmg-dev-dropfolder
+  stage: dev
+
+package:
+  individually: true
+  exclude:
+    - "**/*"
+  include:
+    - .env
+
+functions:
+  get-accounts:
+    handler: account/get-accounts.handler
+    name: ${self:custom.prefix}-GET-Accounts
+    description: SERVERLESS-Returns a list of 10 Accounts with Number and Name
+    events:
+      - http:
+          path: accounts
+          method: get
+    package:
+      include:
+        - account/get-accounts.js
+        - account/node_modules/**
+        
+  get-assignee-names:
+    handler: assignee/get-assignee-names.handler
+    name: ${self:custom.prefix}-GET-Assignee-Names
+    description: SERVERLESS-Returns a list of 10 Assignee Names based on specified value
+    events:
+      - http:
+          path: assigneeNames
+          method: get
+    package:
+      include:
+        - assignee/get-assignee-names.js
+        - assignee/node_modules/**
+
+  get-assignee-personnel-numbers:
+    handler: assignee/get-assignee-personnel-numbers.handler
+    name: ${self:custom.prefix}-GET-Assignee-Personnel-Numbers
+    description: SERVERLESS-Returns a list of 10 Assignee Personnel Numbers based on specified value
+    events:
+      - http:
+          path: assigneePersonnelNumbers
+          method: get
+    package:
+      include:
+        - assignee/get-assignee-personnel-numbers.js
+        - assignee/node_modules/**
+
+  get-assignment-profile-indicators:
+    handler: assignment/get-assignment-profile-indicators.handler
+    name: ${self:custom.prefix}-GET-Assignment-Profile-Indicators
+    description: SERVERLESS-Returns a list of 10 Assignment Profile Indicators based on specified value
+    events:
+      - http:
+          path: assignmentProfileIndicators
+          method: get
+    package:
+      include:
+        - assignment/get-assignment-profile-indicators.js
+        - assignment/node_modules/**
+
+  get-client-data:
+    handler: client/get-client-data.handler
+    name: ${self:custom.prefix}-GET-Client-Data
+    description: SERVERLESS-Returns a list of client data based on personnel number
+    events:
+      - http:
+          path: clientData
+          method: get
+    package:
+      include:
+        - client/get-client-data.js
+        - client/node_modules/**
+
+  get-client-names:
+    handler: client/get-client-names.handler
+    name: ${self:custom.prefix}-GET-Client-Names
+    description: SERVERLESS-Returns a list of 10 client names based on a specific value
+    events:
+      - http:
+          path: clientNames
+          method: get
+    package:
+      include:
+        - client/get-client-names.js
+        - client/node_modules/**
+
+  get-company-codes:
+    handler: company/get-company-codes.handler
+    name: ${self:custom.prefix}-GET-Company-Codes
+    description: SERVERLESS-Returns a list of Company Codes based on enterprise id
+    events:
+      - http:
+          path: companyCodes
+          method: get
+    package:
+      include:
+        - company/get-company-codes.js
+        - company/node_modules/**
+
+  get-company-names:
+    handler: company/get-company-names.handler
+    name: ${self:custom.prefix}-GET-Company-Names
+    description: SERVERLESS-Returns a list of Company Names
+    events:
+      - http:
+          path: companyNames
+          method: get
+    package:
+      include:
+        - company/get-company-names.js
+        - company/node_modules/**
+
+  
+  get-countries:
+    handler: location/get-countries.handler
+    name: ${self:custom.prefix}-GET-Countries
+    description: SERVERLESS-Returns a list of Countries
+    events:
+      - http:
+          path: countries
+          method: get
+    package:
+      include:
+        - location/get-countries.js
+        - location/node_modules/**
+
+  get-eids-of-entered-by:
+    handler: journaltransaction/get-eids-of-entered-by.handler
+    name: ${self:custom.prefix}-GET-Eids-Of-Entered-By
+    description: SERVERLESS-Returns a list of 10 Eids of Entered By based on specified value
+    events:
+      - http:
+          path: eidsOfEnteredBy
+          method: get
+    package:
+      include:
+        - journaltransaction/get-eids-of-entered-by.js
+        - journaltransaction/node_modules/**
+
+  get-eids-of-parked-by:
+    handler: journaltransaction/get-eids-of-parked-by.handler
+    name: ${self:custom.prefix}-GET-Eids-Of-Parked-By
+    description: SERVERLESS-Returns a list of 10 Eids of Parked By based on specified value
+    events:
+      - http:
+          path: eidsOfParkedBy
+          method: get
+    package:
+      include:
+        - journaltransaction/get-eids-of-parked-by.js
+        - journaltransaction/node_modules/**
+
+  get-functional-areas:
+    handler: journaltransaction/get-functional-areas.handler
+    name: ${self:custom.prefix}-GET-Functional-Areas
+    description: SERVERLESS-Returns a list of functional areas
+    events:
+      - http:
+          path: functionalAreas
+          method: get
+    package:
+      include:
+        - journaltransaction/get-functional-areas.js
+        - journaltransaction/node_modules/**
+
+  get-geographic-units:
+    handler: location/get-geographic-units.handler
+    name: ${self:custom.prefix}-GET-Geographic-Units
+    description: SERVERLESS-Returns a list of Geographic Units
+    events:
+      - http:
+          path: geographicUnits
+          method: get
+    package:
+      include:
+        - location/get-geographic-units.js
+        - location/node_modules/**
+
+  get-host-countries:
+    handler: hhte/get-host-countries.handler
+    name: ${self:custom.prefix}-GET-Host-Countries
+    description: SERVERLESS-Returns a list of host countries
+    events:
+      - http:
+          path: hostCountries
+          method: get
+    package:
+      include:
+        - hhte/get-host-countries.js
+        - hhte/node_modules/**
+
+  get-mapping-status:
+    handler: journaltransaction/get-mapping-status.handler
+    name: ${self:custom.prefix}-GET-Mapping-Status
+    description: SERVERLESS-Returns a list of mapping status
+    events:
+      - http:
+          path: mappingStatus
+          method: get
+    package:
+      include:
+        - journaltransaction/get-mapping-status.js
+        - journaltransaction/node_modules/**
+
+  get-project-names:
+    handler: assignment/get-project-names.handler
+    name: ${self:custom.prefix}-GET-Project-Names
+    description: SERVERLESS-Returns a list of 10 Project Names based on specified value
+    events:
+      - http:
+          path: projectNames
+          method: get
+    package:
+      include:
+        - assignment/get-project-names.js
+        - assignment/node_modules/**
+
+  get-project-organizations:
+    handler: assignment/get-project-organizations.handler
+    name: ${self:custom.prefix}-GET-Project-Organizations
+    description: SERVERLESS-Returns a list of 10 Project Organizations based on specified value
+    events:
+      - http:
+          path: projectOrganizations
+          method: get
+    package:
+      include:
+        - assignment/get-project-organizations.js
+        - assignment/node_modules/**
+  
+  get-references:
+    handler: journaltransaction/get-references.handler
+    name: ${self:custom.prefix}-GET-References
+    description: SERVERLESS-Returns a list of 10 References based on specified value
+    events:
+      - http:
+          path: references
+          method: get
+    package:
+      include:
+        - journaltransaction/get-references.js
+        - journaltransaction/node_modules/**
+
+  get-sending-company-codes:
+    handler: company/get-sending-company-codes.handler
+    name: ${self:custom.prefix}-GET-Sending-Company-Codes
+    description: SERVERLESS-Returns a list of Sending Company Codes
+    events:
+      - http:
+          path: sendingCompanyCodes
+          method: get
+    package:
+      include:
+        - company/get-sending-company-codes.js
+        - company/node_modules/**
+
+  get-tax-years:
+    handler: taxyear/get-tax-years.handler
+    name: ${self:custom.prefix}-GET-Tax-Years
+    description: SERVERLESS-Returns a list of Tax Years
+    events:
+      - http:
+          path: taxYears
+          method: get
+    package:
+      include:
+        - taxyear/get-tax-years.js
+        - taxyear/node_modules/**
+
+  get-transaction-type-data:
+    handler: transactiontype/get-transaction-type-data.handler
+    name: ${self:custom.prefix}-GET-Transaction-Type-Data
+    description: SERVERLESS-Returns a list of Transaction Type Data based on account number
+    events:
+      - http:
+          path: transactionTypeData
+          method: get
+    package:
+      include:
+        - transactiontype/get-transaction-type-data.js
+        - transactiontype/node_modules/**
+
+  get-transaction-types:
+    handler: transactiontype/get-transaction-types.handler
+    name: ${self:custom.prefix}-GET-Transaction-Types
+    description: SERVERLESS-Returns a list of Transaction Types
+    events:
+      - http:
+          path: transactionTypes
+          method: get
+    package:
+      include:
+        - transactiontype/get-transaction-types.js
+        - transactiontype/node_modules/**
+
+  put-journal-transaction-details:
+    handler: journaltransaction/put-journal-transaction-details.handler
+    name: ${self:custom.prefix}-PUT-Journal-Transaction-Details
+    description: SERVERLESS-Updates the specific details in JournalTransactionDetail Table
+    events:
+      - http:
+          path: journalTransactionDetails
+          method: get
+    package:
+      include:
+        - journaltransaction/put-journal-transaction-details.js
+        - journaltransaction/node_modules/**
+custom:
+   stage: ${opt:stage, self:provider.stage, env:USER}
+   prefix: 6900-PMG-${self:custom.stage}
+
+resources:
+  Resources:
+    ApiGatewayRestApi:
+      Type: AWS::ApiGateway::RestApi
+      Properties:
+        Name: 6900-PMG-${self:custom.stage}
