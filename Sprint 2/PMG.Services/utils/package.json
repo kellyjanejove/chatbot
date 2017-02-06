@@ -1,14 +1,14 @@
 {
-  "name": "pmg.services",
+  "name": "utils",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lambda-utils.js",
   "scripts": {
-    "test": "mocha"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "serverless-offline": "^3.8.3"
+    "aws-sdk": "^2.9.0"
   }
 }

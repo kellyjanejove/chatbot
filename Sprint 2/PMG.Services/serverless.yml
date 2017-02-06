@@ -343,3 +343,6 @@ resources:
       Type: AWS::ApiGateway::RestApi
       Properties:
         Name: 6900-PMG-${self:custom.stage}
+
+plugins:
+  - serverless-offline

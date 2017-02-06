@@ -52,7 +52,7 @@ const getDbConfigForTest = function () {
 const getDBConfigFromS3 = function () {
 
   let params = {
-    Bucket: process.env.CONFIGURATION_BUCKET,
+    Bucket: '6900-dev-peoplemobilitygateway',
     Key: 'dbconfig.json'
   };
 
