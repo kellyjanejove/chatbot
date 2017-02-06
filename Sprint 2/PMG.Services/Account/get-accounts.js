@@ -1,7 +1,7 @@
 'use strict';
 
 const sql = require('mssql');
-const utils = require('utils/lambda-utils');
+const utils = require('../utils/lambda-utils');
 
 exports.handler = function(event, context, callback) {
     utils.getDbConfig()
@@ -17,10 +17,10 @@ exports.handler = function(event, context, callback) {
                         body: JSON.stringify(data)
                     });
                 }).catch(function(err) {
-                    lambdaUtils.handleError(err, callback);
+                    utils.handleError(err, callback);
                 });
         }).catch(function(err) {
-            lambdaUtils.handleError(err, callback);
+            utils.handleError(err, callback);
         });
 
     function getList(callback) {
