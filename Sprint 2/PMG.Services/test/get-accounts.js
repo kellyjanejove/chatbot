@@ -29,10 +29,10 @@ describe('get-accounts', () => {
     }).then((response) => {
       let results = JSON.parse(response.body);
       expect(results.length).to.be.above(0);
-      
+
     });
   });
-it('it should format CodeTxt correctly', () => {
+  it('it should format CodeTxt correctly', () => {
     return wrapped.run({
       pathParameters: {
         id: accountList[0].accountId
@@ -40,7 +40,7 @@ it('it should format CodeTxt correctly', () => {
     }).then((response) => {
       let results = JSON.parse(response.body);
       expect(results[0].Number).to.be.equal(accountList[0].CodeTxt + ' - ' + accountList[0].DecodeTxt);
-      
+
       //done();
     });
 

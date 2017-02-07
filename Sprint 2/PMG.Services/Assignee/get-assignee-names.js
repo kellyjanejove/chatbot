@@ -35,7 +35,8 @@ exports.handler = function(event, context, callback) {
             if (typeof params.value === 'string' && params.value !== '') {
                 request.input('value', sql.VarChar, params.value);
                 query = query + ` AND ((LastNm LIKE @value + '%') OR (AssigneePersonnelNbr LIKE @value + '%'))
-                AND FullName IS NOT NULL`;
+                AND LTRIM(RTRIM([LastNm])) + ', ' + LTRIM(RTRIM([FirstNm])) + ' ' +
+                    LTRIM(RTRIM([MiddleNm])) + ' - ' + LTRIM(RTRIM([AssigneePersonnelNbr])) IS NOT NULL`;
             }
         }
         //query = query + ' ORDER BY [FullName]';
