@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs4.3
   role: arn:aws:iam::093584548873:role/6900-Dev-Lambda-Execution-Role
-  memorySize: 256 # Overwrite the default memory size. Default is 1024
+  memorySize: 128 # Overwrite the default memory size. Default is 1024
   timeout: 10 # The default is 6
   deploymentBucket: 6900-pmg-dev-dropfolder
   stage: dev
@@ -15,6 +15,7 @@ package:
     - "**/*"
   include:
     - .env
+    - utils/lambda-utils.js
 
 functions:
   get-accounts:
@@ -36,7 +37,7 @@ functions:
     description: SERVERLESS-Returns a list of 10 Assignee Names based on specified value
     events:
       - http:
-          path: assigneeNames
+          path: Assignees/assigneeNames
           method: get
     package:
       include:
@@ -49,7 +50,7 @@ functions:
     description: SERVERLESS-Returns a list of 10 Assignee Personnel Numbers based on specified value
     events:
       - http:
-          path: assigneePersonnelNumbers
+          path: Assignees/assigneePersonnelNumbers
           method: get
     package:
       include:
