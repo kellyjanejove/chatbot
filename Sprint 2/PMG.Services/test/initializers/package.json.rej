@@ -1,0 +1,17 @@
+diff a/Sprint 2/PMG.Services/test/initializers/package.json b/Sprint 2/PMG.Services/test/initializers/package.json	(rejected hunks)
+@@ -0,0 +1,15 @@
++
++{
++  "name": "initializers",
++  "version": "1.0.0",
++  "description": "",
++  "main": "accountInitializer.js",
++  "scripts": {
++    "test": "echo \"Error: no test specified\" && exit 1"
++  },
++  "author": "",
++  "license": "ISC",
++  "dependencies": {
++    "mssql": "^3.3.0"
++  }
++}

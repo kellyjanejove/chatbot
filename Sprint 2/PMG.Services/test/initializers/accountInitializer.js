@@ -1,16 +1,18 @@
 'use strict';
 
 var sql = require('mssql');
-var lambdaUtils = require('../../lib/lambda-utils');
+var lambdaUtils = require('../../Utils/lambda-utils');
 var data = require('./data/accounts.json');
 
-const addAuthorQuery = `MERGE Author WITH (HOLDLOCK) AS d
-                        USING (VALUES (@@Number, @@Name)) AS s (Number, Name) 
-                            ON s.Number = d.Number 
-                            AND s.Name = d.Name
+const addAccountQuery = `MERGE CodeDetail WITH (HOLDLOCK) AS d
+                        USING (VALUES (@@CategoryNbr, @@CodeTxt,@@DecodeTxt,@@CodeDetailStatusInd)) AS s (CategoryNbr, CodeTxt,DecodeTxt,CodeDetailStatusInd) 
+                            ON s.CategoryNbr = d.CategoryNbr 
+                            AND s.CodeTxt = d.CodeTxt
+                            AND s.DecodeTxt= d.DecodeTxt
+                            AND s.CodeDetailStatusInd = d.CodeDetailStatusInd
                         WHEN NOT MATCHED BY TARGET THEN 
-                            INSERT (Number, Name) 
-                            VALUES (s.Number, s.Name);`;
+                            INSERT (CategoryNbr, CodeTxt,DecodeTxt,CodeDetailStatusInd) 
+                            VALUES (s.CategoryNbr, s.CodeTxt,s.DecodeTxt,s.CodeDetailStatusInd);`;
 
 const seed = function () {
     return new Promise(function (resolve) {
@@ -22,7 +24,8 @@ const seed = function () {
                 sql.connect(connString)
                     .then(addAccounts)
                     .then(getAccounts)
-                    .then(function (accounts) {
+                    .then(function (accounts) { 
+                        sql.close();
                         resolve(accounts);
                     });
             });
@@ -36,13 +39,18 @@ const addAccounts = function () {
     let query = '';
     data.forEach(function (record, index) {
 
-        let Number = 'Number' + index;
-        let Name = 'Name' + index;
+        let CategoryNbr = 'CategoryNbr' + index;
+        let CodeTxt = 'CodeTxt' + index;
+        let DecodeTxt = 'DecodeTxt' + index;
+        let CodeDetailStatusInd = 'CodeDetailStatusInd' + index;
 
-        request.input(Number, sql.VarChar, record.Number);
-        request.input(Name, sql.VarChar, record.Name);
 
-        query = query + addAuthorQuery.replace('@Number', Number).replace('@Name', Name);
+        request.input(CategoryNbr, sql.VarChar, record.CategoryNbr);
+        request.input(CodeTxt, sql.VarChar, record.CodeTxt);
+        request.input(DecodeTxt, sql.VarChar, record.DecodeTxt);
+        request.input(CodeDetailStatusInd, sql.VarChar, record.CodeDetailStatusInd);
+
+        query = query + addAccountQuery.replace('@CategoryNbr', CategoryNbr).replace('@CodeTxt', CodeTxt).replace('@DecodeTxt', DecodeTxt).replace('@CodeDetailStatusInd', CodeDetailStatusInd);
     });
 
     //console.log(query);
@@ -51,7 +59,11 @@ const addAccounts = function () {
 
 const getAccounts = function () {
     let request = new sql.Request();
-    const query = 'SELECT a.accountID,a.Number, a.name FROM Accounts a';
+    const query = `Select CAST(CAST(CodeTxt AS INT) AS VARCHAR)  As CodeTxt, DecodeTxt
+               
+                FROM CodeDetail 
+                WHERE CategoryNbr = '16'
+                ORDER BY CodeTxt`;
 
     //console.log(query);
     return request.query(query);

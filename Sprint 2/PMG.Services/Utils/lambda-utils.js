@@ -39,10 +39,10 @@ const getDbConfig = function () {
 const getDbConfigForTest = function () {
   return new Promise(function (resolve, reject) {
     var body = JSON.stringify({
-      'server': 'myreads.cyff9e8mtegh.us-east-1.rds.amazonaws.com',
-      'user': 'sa',
-      'password': 'silentit',
-      'database': 'MyReads-Test'
+      'server': 'rds2sqd0010.chedwncbqb9l.us-east-1.rds.amazonaws.com',
+      'user': '6900_PMGUser',
+      'password': 'Accenture01',
+      'database': '6900_PeopleMobil_Gatew_Dev_Test'
     });
     resolve({Body: body}); // fulfills the promise with `data` as the value
   });

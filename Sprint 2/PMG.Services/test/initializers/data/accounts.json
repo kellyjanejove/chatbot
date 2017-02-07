@@ -1,10 +1,14 @@
 [
   {
-    "Number": "135010 - Snr Exec 1 to 3 Receivables for Tax Equalization",
-    "Name": "Snr Exec 1 to 3 Receivables for Tax Equalization"
+    "CategoryNbr": "16",
+    "CodeTxt": "0000135010",
+    "DecodeTxt":"Snr Exec 1 to 3 Receivables for Tax Equalization",
+    "CodeDetailStatusInd":"1"
   },
   {
-    "Number": "135011 - Snr Exec 1-3 Rec For Tax Equalization-Post IPO",
-    "Name": "Snr Exec 1-3 Rec For Tax Equalization-Post IPO"
+    "CategoryNbr": "16",
+    "CodeTxt": "0000135011",
+    "DecodeTxt":"Snr Exec 1-3 Rec For Tax Equalization-Post IPO",
+    "CodeDetailStatusInd":"1"
   }
 ]
