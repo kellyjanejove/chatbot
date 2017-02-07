@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs4.3
   role: arn:aws:iam::093584548873:role/6900-Dev-Lambda-Execution-Role
-  memorySize: 256 # Overwrite the default memory size. Default is 1024
+  memorySize: 128 # Overwrite the default memory size. Default is 1024
   timeout: 10 # The default is 6
   deploymentBucket: 6900-pmg-dev-dropfolder
   stage: dev
@@ -15,6 +15,7 @@ package:
     - "**/*"
   include:
     - .env
+    - utils/lambda-utils.js
 
 functions:
   get-accounts:
@@ -36,7 +37,7 @@ functions:
     description: SERVERLESS-Returns a list of 10 Assignee Names based on specified value
     events:
       - http:
-          path: assigneeNames
+          path: Assignees/assigneeNames
           method: get
     package:
       include:
@@ -49,7 +50,7 @@ functions:
     description: SERVERLESS-Returns a list of 10 Assignee Personnel Numbers based on specified value
     events:
       - http:
-          path: assigneePersonnelNumbers
+          path: Assignees/assigneePersonnelNumbers
           method: get
     package:
       include:
@@ -69,8 +70,11 @@ functions:
         - assignment/get-assignment-profile-indicators.js
         - assignment/node_modules/**
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 95f546205b12f834963311705832ccdff3f79322
   get-client-data:
     handler: client/get-client-data.handler
     name: ${self:custom.prefix}-GET-Client-Data
@@ -318,6 +322,7 @@ functions:
       include:
         - journaltransaction/put-journal-transaction-details.js
         - journaltransaction/node_modules/**
+<<<<<<< HEAD
 
   search-data-mapping:
     handler: search/search-data-mapping.handler
@@ -333,6 +338,8 @@ functions:
         - search/search.js
         - search/node_modules/**
 
+=======
+>>>>>>> 95f546205b12f834963311705832ccdff3f79322
 custom:
    stage: ${opt:stage, self:provider.stage, env:USER}
    prefix: 6900-PMG-${self:custom.stage}
@@ -342,8 +349,12 @@ resources:
     ApiGatewayRestApi:
       Type: AWS::ApiGateway::RestApi
       Properties:
+<<<<<<< HEAD
         Name: 6900-PMG-${self:custom.stage}
 
 plugins:
   - serverless-mocha-plugin
   - serverless-offline
+=======
+        Name: 6900-PMG-${self:custom.stage}
+>>>>>>> 95f546205b12f834963311705832ccdff3f79322

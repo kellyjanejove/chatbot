@@ -1,45 +1,33 @@
 'use strict';
 
 const sql = require('mssql');
-const AWS = require('aws-sdk');
-AWS.config.region = 'us-east-1';
-const lambda = new AWS.Lambda();
+const utils = require('../utils/lambda-utils');
 
-console.log('Loading...');
+exports.handler = function(event, context, callback) {
 
-const params = {
-    FunctionName: '6900-PMG-Dev-Get-Dbconfig-From-S3'
-};
+    console.log('Loading...');
 
-exports.handler = function (event, context, callback) {
-    try {
-        if (!event.body) {
-            callback(null, {
-                statusCode: 400,
-                body: 'Bad request'
-            });
-        } else {
-            var body = JSON.parse(event.body);
+    if (!event.body) {
+        callback(null, {
+            statusCode: 400,
+            body: 'Bad request'
+        });
+    } else {
+        var body = JSON.parse(event.body);
 
-            lambda.invoke(params, function (err, data) {
-                if (err) {
-                    handleError(err);
-                } else {
-                    var connString = JSON.parse(data.Payload);
+        utils.getDbConfig()
+            .then(function(data) {
+                var connString = JSON.parse(data.Body);
 
-                    sql.connect(connString, function (err, result) {
-                        if (err) {
-                            handleError(err);
-                        } else {
-                            updateList(body);
-                        }
-                    });
-                }
-            });
-        }
-    } catch (err) {
-        handleError(err);
-    }
+                sql.connect(connString, function(err, result) {
+                    if (err) {
+                        handleError(err);
+                    } else {
+                        updateList(body);
+                    }
+                });
+            })
+    };
 
     function updateList(body) {
         updateItem(0, body);
@@ -74,7 +62,7 @@ exports.handler = function (event, context, callback) {
                         [UpdateDttm] = GETDATE()
                     WHERE [JournalTransactionDetailID] = @journalTransactionDetailID`;
 
-        request.query(query, function (error, data) {
+        request.query(query, function(error, data) {
             if (error) {
                 callback(error);
             } else {

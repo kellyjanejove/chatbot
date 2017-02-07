@@ -1,48 +1,31 @@
 'use strict';
 
 const sql = require('mssql');
-const AWS = require('aws-sdk');
-AWS.config.region = 'us-east-1';
-const lambda = new AWS.Lambda();
+const utils = require('../utils/lambda-utils');
 
-console.log('Loading...');
+exports.handler = function(event, context, callback) {
 
-const params = {
-    FunctionName: '6900-PMG-Dev-Get-Dbconfig-From-S3'
-};
+    console.log('Loading...');
 
-exports.handler = function (event, context, callback) {
-    try {
-        lambda.invoke(params, function (err, data) {
-            if (err) {
-                handleError(err);
-            } else {
-                var connString = JSON.parse(data.Payload);
+    utils.getDbConfig()
+        .then(function(data) {
+            var connString = JSON.parse(data.Body);
 
-                sql.connect(connString, function (err) {
-                    if (err) {
-                        handleError(err);
-                    } else {
-                        getList(function (err, data) {
-                            sql.close();
-                            if (err) {
-                                handleError(err);
-                            } else {
-                                callback(null, {
-                                    statusCode: 200,
-                                    headers: {},
-                                    body: JSON.stringify(data)
-                                });
-                            }
-                        });
-                    }
+            sql.connect(connString)
+                .then(getList)
+                .then(function(data) {
+                    sql.close();
+                    callback(null, {
+                        statusCode: 200,
+                        body: JSON.stringify(data)
+                    });
+                }).catch(function(err) {
+                    utils.handleError(err, callback);
                 });
-            }
+        }).catch(function(err) {
+            utils.handleError(err, callback);
         });
-    } catch (err) {
-        handleError(err);
-    }
-
+        
     function getList(callback) {
         var request = new sql.Request();
         var query = getQuery();
@@ -65,9 +48,7 @@ exports.handler = function (event, context, callback) {
 
         query = query + ' ORDER BY HHTE.HostCountry';
 
-        request.query(query, function (error, data) {
-            callback(error, data);
-        });
+        return request.query(query);
     }
 
     function getQuery() {
@@ -75,13 +56,5 @@ exports.handler = function (event, context, callback) {
                 FROM UserToCompany UC WITH(NOLOCK)
                 JOIN CompanyToCountry CC WITH(NOLOCK) ON CC.CompanyCd = UC.CompanyCd
                 JOIN HomeHostTaxEqualization HHTE ON HHTE.CompanyNm = CC.CompanyDesc `;
-    }
-
-    function handleError(err) {
-        console.log(err.message);
-        callback(null, {
-            statusCode: 500,
-            body: err.message
-        });
     }
 };
