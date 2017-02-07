@@ -34,19 +34,21 @@ exports.handler = function(event, context, callback) {
         if (params && Object.keys(params).length) {
             if (typeof params.value === 'string' && params.value !== '') {
                 request.input('value', sql.VarChar, params.value);
-                query = query + `WHERE (LTRIM(RTRIM([LastNm])) + ', ' + LTRIM(RTRIM([FirstNm])) +
-                ' ' + LTRIM(RTRIM([MiddleNm])) + ' - ' + LTRIM(RTRIM([AssigneePersonnelNbr])))
-                IS NOT NULL AND ((LastNm LIKE @value + '%') OR (AssigneePersonnelNbr LIKE @value + '%'))`;
+                query = query + ` AND ((LastNm LIKE @value + '%') OR (AssigneePersonnelNbr LIKE @value + '%'))
+                AND FullName IS NOT NULL`;
             }
         }
-        query = query + ' ORDER BY [Full Name]';
+        //query = query + ' ORDER BY [FullName]';
 
         return request.query(query);
     }
 
     function getQuery() {
         return `SELECT TOP 10 (LTRIM(RTRIM([LastNm])) + ', ' + LTRIM(RTRIM([FirstNm])) + ' ' +
-                    LTRIM(RTRIM([MiddleNm])) + ' - ' + LTRIM(RTRIM([AssigneePersonnelNbr]))) AS [Full Name]
-                FROM Assignee WITH(NOLOCK) `;
+                    LTRIM(RTRIM([MiddleNm])) + ' - ' + LTRIM(RTRIM([AssigneePersonnelNbr]))) AS [FullName]
+                FROM Assignee WITH(NOLOCK) 
+                WHERE (LTRIM(RTRIM([LastNm])) + ', ' + LTRIM(RTRIM([FirstNm])) +
+                ' ' + LTRIM(RTRIM([MiddleNm])) + ' - ' + LTRIM(RTRIM([AssigneePersonnelNbr])))
+                IS NOT NULL `;
     }
 };
