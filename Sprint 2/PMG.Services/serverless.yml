@@ -70,8 +70,11 @@ functions:
         - assignment/get-assignment-profile-indicators.js
         - assignment/node_modules/**
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 95f546205b12f834963311705832ccdff3f79322
   get-client-data:
     handler: client/get-client-data.handler
     name: ${self:custom.prefix}-GET-Client-Data
@@ -319,6 +322,7 @@ functions:
       include:
         - journaltransaction/put-journal-transaction-details.js
         - journaltransaction/node_modules/**
+<<<<<<< HEAD
 
   search-data-mapping:
     handler: search/search-data-mapping.handler
@@ -334,6 +338,8 @@ functions:
         - search/search.js
         - search/node_modules/**
 
+=======
+>>>>>>> 95f546205b12f834963311705832ccdff3f79322
 custom:
    stage: ${opt:stage, self:provider.stage, env:USER}
    prefix: 6900-PMG-${self:custom.stage}
@@ -343,8 +349,12 @@ resources:
     ApiGatewayRestApi:
       Type: AWS::ApiGateway::RestApi
       Properties:
+<<<<<<< HEAD
         Name: 6900-PMG-${self:custom.stage}
 
 plugins:
   - serverless-mocha-plugin
   - serverless-offline
+=======
+        Name: 6900-PMG-${self:custom.stage}
+>>>>>>> 95f546205b12f834963311705832ccdff3f79322
