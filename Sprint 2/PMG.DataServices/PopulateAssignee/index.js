@@ -1,49 +1,32 @@
 'use strict';
 
 const sql = require('mssql');
-const AWS = require('aws-sdk');
-AWS.config.region = 'us-east-1';
-const lambda = new AWS.Lambda();
+const utils = require('../utils/lambda-utils');
 
-const params = {
-    FunctionName: '6900-PMG-Dev-Get-Dbconfig-From-S3'
-};
+exports.handler = function(event, context, callback) {
+    utils.getDbConfig()
+        .then(function(data) {
+            var connString = JSON.parse(data.Body);
 
-console.log('Loading...');
-
-exports.handler = function (event, context, callback) {
-    try {
-        lambda.invoke(params, function (err, data) {
-            if (err) {
-                callback(err);
-            } else {
-                var connString = JSON.parse(data.Payload);
-                connString.requestTimeout = 450000;
-
-                sql.connect(connString, function (err, result) {
-                    if (err) {
-                        callback(err);
-                    } else {
-                        populateAssignee(function (err) {
-                            callback(err);
-                        });
-                    }
+            connString.requestTimeout = 450000;
+            sql.connect(connString)
+                .then(populateAssignee)
+                .catch(function(err) {
+                    utils.handleError(err, callback);
                 });
-            }
+        }).catch(function(err) {
+            utils.handleError(err, callback);
         });
-    } catch (err) {
-        callback(err);
-    }
 
     function populateAssignee(callback) {
         console.log('Populating Assignee table...');
         var transaction = new sql.Transaction();
 
-        transaction.begin(function (err) {
+        transaction.begin(function(err) {
             var request = new transaction.request();
             var query = getQuery();
 
-            request.query(query, function (err) {
+            request.query(query, function(err) {
                 if (err) {
                     console.log('Rolling back transaction....');
                     transaction.rollback();
