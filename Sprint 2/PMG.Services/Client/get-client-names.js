@@ -43,7 +43,7 @@ exports.handler = function(event, context, callback) {
 
     function getQuery() {
         return `SELECT DISTINCT TOP 10 LTRIM(RTRIM(ClientNm)) AS [ClientName]
-                FROM Assignment WITH(NOLOCK) 
+                FROM AssignmentProfileFam WITH(NOLOCK) 
                 WHERE ClientNm IS NOT NULL `;
     }
 
