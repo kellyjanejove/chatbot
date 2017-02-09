@@ -3,26 +3,26 @@
 const sql = require('mssql');
 const utils = require('../utils/lambda-utils');
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
 
     console.log('Loading...');
 
     utils.getDbConfig()
-        .then(function(data) {
+        .then(function (data) {
             var connString = JSON.parse(data.Body);
 
             sql.connect(connString)
                 .then(getList)
-                .then(function(data) {
+                .then(function (data) {
                     sql.close();
                     callback(null, {
                         statusCode: 200,
                         body: JSON.stringify(data)
                     });
-                }).catch(function(err) {
+                }).catch(function (err) {
                     utils.handleError(err, callback);
                 });
-        }).catch(function(err) {
+        }).catch(function (err) {
             utils.handleError(err, callback);
         });
 
@@ -47,11 +47,4 @@ exports.handler = function(event, context, callback) {
                 WHERE ClientNm IS NOT NULL `;
     }
 
-    function handleError(err) {
-        console.log(err.message);
-        callback(null, {
-            statusCode: 500,
-            body: err.message
-        });
-    }
 };
