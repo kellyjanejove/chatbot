@@ -37,7 +37,7 @@ functions:
     description: SERVERLESS-Returns a list of 10 Assignee Names based on specified value
     events:
       - http:
-          path: Assignees/assigneeNames
+          path: assigneeNames
           method: get
     package:
       include:
@@ -50,7 +50,7 @@ functions:
     description: SERVERLESS-Returns a list of 10 Assignee Personnel Numbers based on specified value
     events:
       - http:
-          path: Assignees/assigneePersonnelNumbers
+          path: assigneePersonnelNumbers
           method: get
     package:
       include:
