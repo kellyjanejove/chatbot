@@ -11,6 +11,7 @@ const wrapped = lambdaWrapper.wrap(mod, {
   handler: 'handler'
 });
 
+
 describe('get-accounts', () => {
   var accountList = [];
   before((done) => {
