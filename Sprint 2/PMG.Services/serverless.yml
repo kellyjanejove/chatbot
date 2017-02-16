@@ -18,6 +18,12 @@ package:
     - utils/lambda-utils.js
 
 functions:
+
+  custom-authorizer:
+    handler: customauthorizer/authorizer.handler
+    name: ${self:custom.prefix}-Custom-Authorizer
+    description: SERVERLESS-The custom authorizer
+
   get-accounts:
     handler: account/get-accounts.handler
     name: ${self:custom.prefix}-GET-Accounts
@@ -26,6 +32,8 @@ functions:
       - http:
           path: accounts
           method: get
+          authorizer:
+            name:  custom-authorizer
     package:
       include:
         - account/get-accounts.js

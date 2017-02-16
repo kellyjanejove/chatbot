@@ -1,0 +1,14 @@
+{
+  "name": "CustomAuthorizer",
+  "version": "0.0.0",
+  "description": "CustomAuthorizer",
+  "main": "app.js",
+  "author": {
+    "name": "Administrator",
+    "email": ""
+  },
+  "dependencies": {
+    "fs": "0.0.2",
+    "jsonwebtoken": "^5.7.0"
+  }
+}
