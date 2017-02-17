@@ -26,7 +26,7 @@ exports.handler = function (event, context, callback) {
             utils.handleError(err, callback);
         });
 
-    function getList(callback) {
+    function getList() {
         var request = new sql.Request();
         var query = getQuery();
         var params = event.queryStringParameters;

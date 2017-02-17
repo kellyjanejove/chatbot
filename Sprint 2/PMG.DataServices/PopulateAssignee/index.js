@@ -3,30 +3,30 @@
 const sql = require('mssql');
 const utils = require('../utils/lambda-utils');
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
     utils.getDbConfig()
-        .then(function(data) {
+        .then(function (data) {
             var connString = JSON.parse(data.Body);
 
             connString.requestTimeout = 450000;
             sql.connect(connString)
                 .then(populateAssignee)
-                .catch(function(err) {
+                .catch(function (err) {
                     utils.handleError(err, callback);
                 });
-        }).catch(function(err) {
+        }).catch(function (err) {
             utils.handleError(err, callback);
         });
 
-    function populateAssignee(callback) {
+    function populateAssignee() {
         console.log('Populating Assignee table...');
         var transaction = new sql.Transaction();
 
-        transaction.begin(function(err) {
+        transaction.begin(function (err) {
             var request = new transaction.request();
             var query = getQuery();
 
-            request.query(query, function(err) {
+            request.query(query, function (err) {
                 if (err) {
                     console.log('Rolling back transaction....');
                     transaction.rollback();

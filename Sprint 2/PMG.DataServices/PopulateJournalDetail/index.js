@@ -3,22 +3,22 @@
 const sql = require('mssql');
 const utils = require('../utils/lambda-utils');
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
     utils.getDbConfig()
-        .then(function(data) {
+        .then(function (data) {
             var connString = JSON.parse(data.Body);
 
             connString.requestTimeout = 450000;
             sql.connect(connString)
                 .then(populateJournalDetail)
-                .catch(function(err) {
+                .catch(function (err) {
                     utils.handleError(err, callback);
                 });
-        }).catch(function(err) {
+        }).catch(function (err) {
             utils.handleError(err, callback);
         });
 
-    function populateJournalDetail(callback) {
+    function populateJournalDetail() {
         console.log('Populating Journal detail table...');
         var transaction = new sql.Transaction();
 
