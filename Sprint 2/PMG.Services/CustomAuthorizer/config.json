@@ -1,0 +1,14 @@
+{
+  "stage": {
+    "algorithm": [ "RS256" ],
+    "scope": [ "read_resource_planner", "write_resource_planner" ],
+    "issuer": "urn:federation:accenture:stage",
+    "certName": "tokensigning-stage.accenture.com.pem"
+  },
+  "prod": {
+    "algorithm": [ "RS256" ],
+    "scope": [ "read_resource_planner", "write_resource_planner" ],
+    "issuer": "urn:federation:accenture",
+    "certName": "tokensigning.accenture.com.pem"
+  }
+}

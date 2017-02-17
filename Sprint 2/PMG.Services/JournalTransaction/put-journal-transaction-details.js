@@ -3,7 +3,7 @@
 const sql = require('mssql');
 const utils = require('../utils/lambda-utils');
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
 
     console.log('Loading...');
 
@@ -16,17 +16,17 @@ exports.handler = function(event, context, callback) {
         var body = JSON.parse(event.body);
 
         utils.getDbConfig()
-            .then(function(data) {
+            .then(function (data) {
                 var connString = JSON.parse(data.Body);
 
-                sql.connect(connString, function(err, result) {
+                sql.connect(connString, function (err, result) {
                     if (err) {
-                        handleError(err);
+                        utils.handleError(err);
                     } else {
                         updateList(body);
                     }
                 });
-            })
+            });
     };
 
     function updateList(body) {
@@ -62,7 +62,7 @@ exports.handler = function(event, context, callback) {
                         [UpdateDttm] = GETDATE()
                     WHERE [JournalTransactionDetailID] = @journalTransactionDetailID`;
 
-        request.query(query, function(error, data) {
+        request.query(query, function (error, data) {
             if (error) {
                 callback(error);
             } else {
@@ -76,11 +76,4 @@ exports.handler = function(event, context, callback) {
                 SET `;
     }
 
-    function handleError(err) {
-        console.log(err.message);
-        callback(null, {
-            statusCode: 500,
-            body: err.message
-        });
-    }
 };

@@ -1,33 +1,33 @@
-`use strict`;
+'use strict';
 
-const sql = require(`mssql`);
+const sql = require('mssql');
 const utils = require('../utils/lambda-utils');
 
 var search = require('./search.js');
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
 
     console.log('Loading...');
 
     utils.getDbConfig()
-        .then(function(data) {
+        .then(function (data) {
             var connString = JSON.parse(data.Body);
 
             sql.connect(connString)
                 .then(getList)
-                .then(function(data) {
+                .then(function (data) {
                     sql.close();
                     callback(null, {
                         statusCode: 200,
                         body: JSON.stringify(data)
                     });
-                }).catch(function(err) {
+                }).catch(function (err) {
                     utils.handleError(err, callback);
                 });
-        }).catch(function(err) {
+        }).catch(function (err) {
             utils.handleError(err, callback);
         });
 
-    function getList(callback) {
+    function getList() {
         var request = new sql.Request();
         var query = search.select;
 
@@ -35,7 +35,7 @@ exports.handler = function(event, context, callback) {
         var params = null;
 
         if (queryParams && Object.keys(queryParams).length) {
-            if (typeof queryParams.searchParam !== `undefined`) {
+            if (typeof queryParams.searchParam !== 'undefined') {
                 params = JSON.parse(queryParams.searchParam);
 
                 if (typeof params['Company Code'] !== 'undefined') {

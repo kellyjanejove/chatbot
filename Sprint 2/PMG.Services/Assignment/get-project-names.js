@@ -3,30 +3,30 @@
 const sql = require('mssql');
 const utils = require('../utils/lambda-utils');
 
-exports.handler = function(event, context, callback) {
+exports.handler = function (event, context, callback) {
 
     console.log('Loading...');
 
     utils.getDbConfig()
-        .then(function(data) {
+        .then(function (data) {
             var connString = JSON.parse(data.Body);
 
             sql.connect(connString)
                 .then(getList)
-                .then(function(data) {
+                .then(function (data) {
                     sql.close();
                     callback(null, {
                         statusCode: 200,
                         body: JSON.stringify(data)
                     });
-                }).catch(function(err) {
+                }).catch(function (err) {
                     utils.handleError(err, callback);
                 });
-        }).catch(function(err) {
+        }).catch(function (err) {
             utils.handleError(err, callback);
         });
 
-    function getList(callback) {
+    function getList() {
         var request = new sql.Request();
         var query = getQuery();
         var params = event.queryStringParameters;
@@ -49,11 +49,4 @@ exports.handler = function(event, context, callback) {
                 WHERE ProjectNm <> '' AND ProjectNm IS NOT NULL `;
     }
 
-    function handleError(err) {
-        console.log(err.message);
-        callback(null, {
-            statusCode: 500,
-            body: err.message
-        });
-    }
 };

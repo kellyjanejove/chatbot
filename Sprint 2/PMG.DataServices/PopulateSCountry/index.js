@@ -1,41 +1,24 @@
 'use strict';
 
 const sql = require('mssql');
-const AWS = require('aws-sdk');
-AWS.config.region = 'us-east-1';
-const lambda = new AWS.Lambda();
-
-const params = {
-    FunctionName: '6900-PMG-Dev-Get-Dbconfig-From-S3'
-};
-
-console.log('Loading...');
+const utils = require('../utils/lambda-utils');
 
 exports.handler = function (event, context, callback) {
-    try {
-        lambda.invoke(params, function (err, data) {
-            if (err) {
-                callback(err);
-            } else {
-                var connString = JSON.parse(data.Payload);
-                connString.requestTimeout = 450000;
+    utils.getDbConfig()
+        .then(function (data) {
+            var connString = JSON.parse(data.Body);
 
-                sql.connect(connString, function (err, result) {
-                    if (err) {
-                        callback(err);
-                    } else {
-                        populateCountry(function (err) {
-                            callback(err);
-                        });
-                    }
+            connString.requestTimeout = 450000;
+            sql.connect(connString)
+                .then(populateCountry)
+                .catch(function (err) {
+                    utils.handleError(err, callback);
                 });
-            }
+        }).catch(function (err) {
+            utils.handleError(err, callback);
         });
-    } catch (err) {
-        callback(err);
-    }
 
-    function populateCountry(callback) {
+    function populateCountry() {
         console.log('Populating country...');
         var transaction = new sql.Transaction();
 
