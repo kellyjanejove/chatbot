@@ -313,6 +313,32 @@ functions:
         - transactiontype/get-transaction-types.js
         - transactiontype/node_modules/**
 
+  post-journal-breakdown:
+    handler: journaltransaction/post-journal-breakdown.handler
+    name: ${self:custom.prefix}-POST-Journal-Breakdown
+    description: SERVERLESS-Create Breakdown
+    events:
+      - http:
+          path: journalBreakdown
+          method: post
+    package:
+      include:
+        - journaltransaction/post-journal-breakdown.js
+        - journaltransaction/node_modules/**
+
+  put-journal-breakdown:
+    handler: journaltransaction/put-journal-breakdown.handler
+    name: ${self:custom.prefix}-PUT-Journal-Breakdown
+    description: SERVERLESS-Undo Breakdown
+    events:
+      - http:
+          path: journalBreakdown
+          method: put
+    package:
+      include:
+        - journaltransaction/put-journal-transaction-details.js
+        - journaltransaction/node_modules/**
+
   put-journal-transaction-details:
     handler: journaltransaction/put-journal-transaction-details.handler
     name: ${self:custom.prefix}-PUT-Journal-Transaction-Details
@@ -320,7 +346,7 @@ functions:
     events:
       - http:
           path: journalTransactionDetails
-          method: get
+          method: put
     package:
       include:
         - journaltransaction/put-journal-transaction-details.js
