@@ -151,7 +151,7 @@ exports.handler = function (event, context, callback) {
 
         request.query(query, function (error, data) {
             if (error) {
-                console.log(error);
+                utils.handleError(error);
             } else {
                 //auditChildren(breakdownParam.jDParentId);  
             }
