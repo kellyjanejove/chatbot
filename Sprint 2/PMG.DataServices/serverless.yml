@@ -71,7 +71,6 @@ functions:
       include:
         - populatejournaldetail/index.js
         - populatejournaldetail/node_modules/**
-        - populatejournal/node_modules/**
 
   populate-s-country:
     handler: populatescountry/index.handler
