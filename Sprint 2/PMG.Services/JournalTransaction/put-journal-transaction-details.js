@@ -35,7 +35,11 @@ exports.handler = function (event, context, callback) {
 
     function updateItem(index, body) {
         if (index >= body.length) {
-            callback();
+            sql.close();
+            callback(null, {
+                statusCode: 200,
+                body: 'OK'
+            });
         }
 
         var request = new sql.Request();

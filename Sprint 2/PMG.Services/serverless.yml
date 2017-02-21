@@ -23,6 +23,9 @@ functions:
     handler: customauthorizer/authorizer.handler
     name: ${self:custom.prefix}-Custom-Authorizer
     description: SERVERLESS-The custom authorizer
+    package:
+      include:
+        - customauthorizer/**
 
   get-accounts:
     handler: account/get-accounts.handler
