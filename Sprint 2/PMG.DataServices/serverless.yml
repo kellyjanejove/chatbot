@@ -19,13 +19,13 @@ package:
 
 functions:
   populate-assignee:
-    handler: populateassignee/index.handler
+    handler: PopulateAssignee/index.handler
     name: ${self:custom.prefix}-Populate-Assignee
     description: SERVERLESS-populates the assignee table
     package:
       include:
-        - populateassignee/index.js
-        - populateassignee/node_modules/**
+        - PopulateAssignee/index.js
+        - PopulateAssignee/node_modules/**
 
   populate-assignee-profile-fam:
     handler: populateassigneeprofilefam/index.handler
@@ -71,6 +71,15 @@ functions:
       include:
         - populatejournaldetail/index.js
         - populatejournaldetail/node_modules/**
+
+  populate-journal-detail-ext:
+    handler: PopulateJournalDetailExt/index.handler
+    name: ${self:custom.prefix}-Populate-Journal-Details-Ext
+    description: SERVERLESS-populates the Journal Transaction Detail table
+    package:
+      include:
+        - PopulateJournalDetailExt/index.js
+        - PopulateJournalDetailExt/node_modules/**
 
   populate-s-country:
     handler: populatescountry/index.handler
