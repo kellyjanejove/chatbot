@@ -13,6 +13,9 @@ const handleError = function (err, callback) {
     console.log(err.stack);
     callback(null, {
         'statusCode': 500,
+        headers: {
+            'Access-Control-Allow-Origin': '*' // Required for CORS support to work
+        },
         'body': err.message
     });
 };

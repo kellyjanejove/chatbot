@@ -35,8 +35,8 @@ functions:
       - http:
           path: accounts
           method: get
-          authorizer:
-            name:  custom-authorizer
+          cors: true
+          
     package:
       include:
         - account/get-accounts.js
@@ -50,6 +50,7 @@ functions:
       - http:
           path: assigneeNames
           method: get
+          cors: true
     package:
       include:
         - assignee/get-assignee-names.js
@@ -63,6 +64,7 @@ functions:
       - http:
           path: assigneePersonnelNumbers
           method: get
+          cors: true
     package:
       include:
         - assignee/get-assignee-personnel-numbers.js
@@ -76,6 +78,7 @@ functions:
       - http:
           path: assignmentProfileIndicators
           method: get
+          cors: true
     package:
       include:
         - assignment/get-assignment-profile-indicators.js
@@ -89,6 +92,7 @@ functions:
       - http:
           path: clientData
           method: get
+          cors: true
     package:
       include:
         - client/get-client-data.js
@@ -102,6 +106,7 @@ functions:
       - http:
           path: clientNames
           method: get
+          cors: true
     package:
       include:
         - client/get-client-names.js
@@ -115,6 +120,7 @@ functions:
       - http:
           path: companyCodes
           method: get
+          cors: true
     package:
       include:
         - company/get-company-codes.js
@@ -128,6 +134,7 @@ functions:
       - http:
           path: companyNames
           method: get
+          cors: true
     package:
       include:
         - company/get-company-names.js
@@ -142,6 +149,7 @@ functions:
       - http:
           path: countries
           method: get
+          cors: true
     package:
       include:
         - location/get-countries.js
@@ -155,6 +163,7 @@ functions:
       - http:
           path: eidsOfEnteredBy
           method: get
+          cors: true
     package:
       include:
         - journaltransaction/get-eids-of-entered-by.js
@@ -168,6 +177,7 @@ functions:
       - http:
           path: eidsOfParkedBy
           method: get
+          cors: true
     package:
       include:
         - journaltransaction/get-eids-of-parked-by.js
@@ -181,6 +191,7 @@ functions:
       - http:
           path: functionalAreas
           method: get
+          cors: true
     package:
       include:
         - journaltransaction/get-functional-areas.js
@@ -194,6 +205,7 @@ functions:
       - http:
           path: geographicUnits
           method: get
+          cors: true
     package:
       include:
         - location/get-geographic-units.js
@@ -207,6 +219,7 @@ functions:
       - http:
           path: hostCountries
           method: get
+          cors: true
     package:
       include:
         - hhte/get-host-countries.js
@@ -220,6 +233,7 @@ functions:
       - http:
           path: mappingStatus
           method: get
+          cors: true
     package:
       include:
         - journaltransaction/get-mapping-status.js
@@ -233,6 +247,7 @@ functions:
       - http:
           path: projectNames
           method: get
+          cors: true
     package:
       include:
         - assignment/get-project-names.js
@@ -246,6 +261,7 @@ functions:
       - http:
           path: projectOrganizations
           method: get
+          cors: true
     package:
       include:
         - assignment/get-project-organizations.js
@@ -259,6 +275,7 @@ functions:
       - http:
           path: references
           method: get
+          cors: true
     package:
       include:
         - journaltransaction/get-references.js
@@ -272,6 +289,7 @@ functions:
       - http:
           path: sendingCompanyCodes
           method: get
+          cors: true
     package:
       include:
         - company/get-sending-company-codes.js
@@ -285,6 +303,7 @@ functions:
       - http:
           path: taxYears
           method: get
+          cors: true
     package:
       include:
         - taxyear/get-tax-years.js
@@ -298,6 +317,7 @@ functions:
       - http:
           path: transactionTypeData
           method: get
+          cors: true
     package:
       include:
         - transactiontype/get-transaction-type-data.js
@@ -311,6 +331,7 @@ functions:
       - http:
           path: transactionTypes
           method: get
+          cors: true
     package:
       include:
         - transactiontype/get-transaction-types.js
@@ -324,6 +345,7 @@ functions:
       - http:
           path: journalBreakdown
           method: post
+          cors: true
     package:
       include:
         - journaltransaction/post-journal-breakdown.js
@@ -337,6 +359,7 @@ functions:
       - http:
           path: journalBreakdown
           method: put
+          cors: true
     package:
       include:
         - journaltransaction/put-journal-transaction-details.js
@@ -357,12 +380,13 @@ functions:
 
   search-data-mapping:
     handler: search/search-data-mapping.handler
-    name: ${self:custom.prefix}-GET-Search-Data-Mapping
+    name: ${self:custom.prefix}-POST-Search-Data-Mapping
     description: SERVERLESS- Returns a list of search results based on specified criteria
     events:
       - http:
           path: searchDataMapping
-          method: get
+          method: post
+          cors: true
     package:
       include:
         - search/search-data-mapping.js
