@@ -7,7 +7,8 @@ var search = require('./search.js');
 exports.handler = function (event, context, callback) {
 
     console.log('Loading...');
-
+    console.log(event);
+    
     utils.getDbConfig()
         .then(function (data) {
             var connString = JSON.parse(data.Body);
@@ -53,6 +54,7 @@ exports.handler = function (event, context, callback) {
 
             orderBy = params.orderBy;
             orderByDirection = params.orderByDirection;
+
             params = params.searchParam;
 
             if (typeof params['Company Code'] !== 'undefined') {
@@ -391,12 +393,12 @@ exports.handler = function (event, context, callback) {
                     case '>=':
                     case '<=':
                     case 'LIKE':
-                        query = query + ' AND ap.AssignmentProfileIndicator ' + operator + ' @assignmentprofileindicator ';
-                        request.input('assignmentprofileindicator', sql.VarChar, values);
+                        query = query + ' AND ap.TravelPlanIndicator ' + operator + ' @TravelPlanIndicator ';
+                        request.input('TravelPlanIndicator', sql.VarChar, values);
                         break;
                     case 'IN':
                     case 'NOT IN':
-                        query = query + ' AND ap.AssignmentProfileIndicator ' + operator + ' (';
+                        query = query + ' AND ap.TravelPlanIndicator ' + operator + ' (';
 
                         for (let i in values) {
                             query = query + '@value' + i + ', ';
@@ -1062,7 +1064,7 @@ exports.handler = function (event, context, callback) {
             query = query + '\n ORDER BY ' + orderBy + ' ' + orderByDirection;
         }
 
-        //query = query + search.fetchBy;
+        query = query + search.fetchBy;
 
         console.log(query);
         return request.query(query);

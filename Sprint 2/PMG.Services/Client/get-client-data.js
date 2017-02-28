@@ -36,7 +36,7 @@ exports.handler = function (event, context, callback) {
 
         if (params && Object.keys(params).length) {
             if (typeof params.value === 'string' && params.value !== '') {
-                request.input('value', sql.VarChar, params.personnelNumber);
+                request.input('value', sql.VarChar, params.value);
                 query = query + 'WHERE PersonnelNbr = @value';
             }
         }
