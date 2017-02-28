@@ -10,6 +10,9 @@ exports.handler = function (event, context, callback) {
     if (!event.body) {
         callback(null, {
             statusCode: 400,
+            headers: {
+                'Access-Control-Allow-Origin': '*' // Required for CORS support to work
+            },
             body: 'Bad request'
         });
     } else {
@@ -43,39 +46,41 @@ exports.handler = function (event, context, callback) {
                 },
                 body: 'OK'
             });
-        }
+        } else {
+            var request = new sql.Request();
+            var updateParam = body[index];
+            var query = getQuery();
 
-        var request = new sql.Request();
-        var updateParam = JSON.parse(body[index]);
-        var query = getQuery();
+            request.input('updateUserId', sql.VarChar, updateParam.UpdateUserId);
+            request.input('mappingStatusInd', sql.VarChar, updateParam.MappingStatusInd);
+            request.input('journalTransactionTypeDesc', sql.VarChar, updateParam.JournalTransactionTypeDesc);
+            request.input('assigneePersonnelNbr', sql.VarChar, updateParam.AssigneePersonnelNbr);
+            request.input('taxYearNbr', sql.VarChar, updateParam.TaxYearNbr);
+            request.input('clientNm', sql.VarChar, updateParam.ClientNm);
+            request.input('commentsTxt', sql.VarChar, updateParam.CommentsTxt);
+            request.input('assignmentProfileIndicator', sql.VarChar, updateParam.assignmentProfileIndicator);
+            request.input('journalTransactionDetailID', sql.VarChar, updateParam.JournalTransactionDetailID);
 
-        request.input('updateUserId', sql.VarChar, updateParam.UpdateUserId);
-        request.input('mappingStatusInd', sql.VarChar, updateParam.MappingStatusInd);
-        request.input('journalTransactionTypeDesc', sql.VarChar, updateParam.JournalTransactionTypeDesc);
-        request.input('assigneePersonnelNbr', sql.VarChar, updateParam.AssigneePersonnelNbr);
-        request.input('taxYearNbr', sql.VarChar, updateParam.TaxYearNbr);
-        request.input('clientNm', sql.VarChar, updateParam.ClientNm);
-        request.input('commentsTxt', sql.VarChar, updateParam.CommentsTxt);
-        request.input('assignmentProfileIndicator', sql.VarChar, updateParam.assignmentProfileIndicator);
-        request.input('journalTransactionDetailID', sql.VarChar, updateParam.JournalTransactionDetailID);
-
-        query = query + `[MappingStatusInd] = @mappingStatusInd,
+            query = query + `[MappingStatusInd] = @mappingStatusInd,
                         [JournalTransactionTypeDesc] = @journalTransactionTypeDesc,
                         [TaxYearNbr] = @taxYearNbr,
                         [ClientNm] = @clientNm,
-                        [AssignmentProfileIndicator] = @assignmentprofileindicator,
+                        [TravelPlanIndicator] = @assignmentProfileIndicator,
                         [CommentsTxt] = @commentsTxt,
                         [UpdateUserId] = @updateUserId,
                         [UpdateDttm] = GETDATE()
                     WHERE [JournalTransactionDetailID] = @journalTransactionDetailID`;
 
-        request.query(query, function (error, data) {
-            if (error) {
-                callback(error);
-            } else {
-                updateItem(index + 1, body);
-            }
-        });
+
+            console.log(query);
+            request.query(query, function (error, data) {
+                if (error) {
+                    utils.handleError(error, callback);
+                } else {
+                    updateItem(index + 1, body);
+                }
+            });
+        }
     }
 
     function getQuery() {

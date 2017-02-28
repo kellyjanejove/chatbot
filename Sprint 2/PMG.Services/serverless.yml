@@ -351,6 +351,21 @@ functions:
         - journaltransaction/post-journal-breakdown.js
         - journaltransaction/node_modules/**
 
+  post-search-data-mapping:
+    handler: search/post-search-data-mapping.handler
+    name: ${self:custom.prefix}-POST-Search-Data-Mapping
+    description: SERVERLESS- Returns a list of search results based on specified criteria
+    events:
+      - http:
+          path: searchDataMapping
+          method: post
+          cors: true
+    package:
+      include:
+        - search/post-search-data-mapping.js
+        - search/search.js
+        - search/node_modules/**
+        
   put-journal-breakdown:
     handler: journaltransaction/put-journal-breakdown.handler
     name: ${self:custom.prefix}-PUT-Journal-Breakdown
@@ -373,25 +388,12 @@ functions:
       - http:
           path: journalTransactionDetails
           method: put
+          cors: true
     package:
       include:
         - journaltransaction/put-journal-transaction-details.js
         - journaltransaction/node_modules/**
 
-  search-data-mapping:
-    handler: search/search-data-mapping.handler
-    name: ${self:custom.prefix}-POST-Search-Data-Mapping
-    description: SERVERLESS- Returns a list of search results based on specified criteria
-    events:
-      - http:
-          path: searchDataMapping
-          method: post
-          cors: true
-    package:
-      include:
-        - search/search-data-mapping.js
-        - search/search.js
-        - search/node_modules/**
 
 custom:
    stage: ${opt:stage, self:provider.stage, env:USER}
