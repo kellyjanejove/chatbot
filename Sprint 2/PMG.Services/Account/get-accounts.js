@@ -14,6 +14,9 @@ exports.handler = function (event, context, callback) {
                     sql.close();
                     callback(null, {
                         statusCode: 200,
+                        headers: {
+                            'Access-Control-Allow-Origin': '*' // Required for CORS support to work
+                        },
                         body: JSON.stringify(data)
                     });
                 }).catch(function (err) {

@@ -35,8 +35,6 @@ functions:
       - http:
           path: accounts
           method: get
-          authorizer:
-            name:  custom-authorizer
           cors: true
           
     package:
@@ -382,12 +380,12 @@ functions:
 
   search-data-mapping:
     handler: search/search-data-mapping.handler
-    name: ${self:custom.prefix}-GET-Search-Data-Mapping
+    name: ${self:custom.prefix}-POST-Search-Data-Mapping
     description: SERVERLESS- Returns a list of search results based on specified criteria
     events:
       - http:
           path: searchDataMapping
-          method: get
+          method: post
           cors: true
     package:
       include:
