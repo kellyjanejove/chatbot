@@ -10,6 +10,9 @@ exports.handler = function (event, context, callback) {
     if (!event.body) {
         callback(null, {
             statusCode: 400,
+            headers: {
+                'Access-Control-Allow-Origin': '*' // Required for CORS support to work
+            },
             body: 'Bad request'
         });
     } else {
@@ -112,17 +115,18 @@ exports.handler = function (event, context, callback) {
                         END CATCH `;
         request.query(query, function (error, data) {
             if (error) {
-                console.log(error);
+                sql.close();
+                utils.handleError(error, callback);
             } else {
-                res.json();
+                undoParentSplit(breakdownParam);
             }
         });
     }
 
     function undoParentSplit(breakdownParam) {
         var request = new sql.Request();
-        request.input('jDParentId', sql.int, breakdownParam.jDParentId);
-        
+        request.input('jDParentId', sql.Int, breakdownParam.jDParentId);
+
         var query = `   BEGIN TRY
                             BEGIN TRAN
                                 UPDATE JournalTransactionDetail
@@ -135,8 +139,18 @@ exports.handler = function (event, context, callback) {
                         END CATCH `;
 
         request.query(query, function (error, data) {
+            sql.close();
             if (error) {
-                console.log(error);
+                utils.handleError(error, callback);
+            } else {
+
+                callback(null, {
+                    statusCode: 200,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*' // Required for CORS support to work
+                    },
+                    body: 'OK'
+                });
             }
         });
     }

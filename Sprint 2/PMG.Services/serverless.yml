@@ -8,6 +8,14 @@ provider:
   timeout: 20 # The default is 6
   deploymentBucket: 6900-pmg-dev-dropfolder
   stage: dev
+  vpc:
+    vpcIds:
+      - vpc-c1cec4a4
+    subnetIds:
+      - subnet-aa2b4a81
+      - subnet-5d52082a
+    securityGroupIds:
+      - sg-d542c3ad
 
 package:
   individually: true
@@ -377,7 +385,7 @@ functions:
           cors: true
     package:
       include:
-        - journaltransaction/put-journal-transaction-details.js
+        - journaltransaction/put-journal-breakdown.js
         - journaltransaction/node_modules/**
 
   put-journal-transaction-details:

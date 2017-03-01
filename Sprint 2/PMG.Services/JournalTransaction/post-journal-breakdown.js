@@ -38,34 +38,43 @@ exports.handler = function (event, context, callback) {
             //res.json();
             updateParent(records[0]);
         } else {
-            let breakdownParam = JSON.parse(records[index]);
-            getCreateQuery(breakdownParam);
-            createChild(index + 1, records);
+            console.log('Updating child:  ' + index);
+            let breakdownParam = records[index];
+            var query = getCreateQuery();
+            var request = new sql.Request();
+
+            request.input('journalTransactionId', sql.Int, breakdownParam.JournalTransactionId);
+            request.input('mappingStatusInd', sql.VarChar, breakdownParam.MappingStatusInd);
+            request.input('assigneePersonnelNbr', sql.VarChar, breakdownParam.AssigneePersonnelNbr);
+            request.input('taxYearNbr', sql.VarChar, breakdownParam.TaxYearNbr);
+            request.input('journalTransactionTypeId', sql.Int, breakdownParam.JournalTransactionTypeId);
+            request.input('journalTransactionTypeDesc', sql.VarChar, breakdownParam.JournalTransactionTypeDesc);
+            request.input('clientCd', sql.VarChar, breakdownParam.ClientCd);
+            request.input('clientNm', sql.VarChar, breakdownParam.ClientNm);
+            request.input('localCurrencyAmt', sql.Decimal(24, 4), breakdownParam.localCurrencyAmt);
+            request.input('usDollarAmt', sql.Decimal(24, 4), breakdownParam.USDollarAmt);
+            request.input('commentsTxt', sql.VarChar, breakdownParam.CommentsTxt);
+            request.input('updateUserId', sql.VarChar, breakdownParam.UpdateUserId);
+            request.input('jDParentId', sql.Int, breakdownParam.jDParentId);
+            request.input('isDeletedInd', sql.VarChar, breakdownParam.isDeletedInd);
+            request.input('TravelPlanIndicator', sql.Int, breakdownParam.TravelPlanIndicator);
+
+            request.query(query, function (error, data) {
+                if (error) {
+                    sql.close();
+                    utils.handleError(error, callback);
+                } else {
+                    createChild(index + 1, records);
+                }
+            });
+
         }
     }
 
-    function getCreateQuery(breakdownParam) {
-        var request = new sql.Request();
+    function getCreateQuery() {
         var query = `
             BEGIN TRY
                 BEGIN TRAN`;
-
-        request.input('journalTransactionId', sql.Int, breakdownParam.JournalTransactionId);
-        request.input('mappingStatusInd', sql.VarChar, breakdownParam.MappingStatusInd);
-        request.input('assigneePersonnelNbr', sql.VarChar, breakdownParam.AssigneePersonnelNbr);
-        request.input('taxYearNbr', sql.VarChar, breakdownParam.TaxYearNbr);
-        request.input('journalTransactionTypeId', sql.Int, breakdownParam.JournalTransactionTypeId);
-        request.input('journalTransactionTypeDesc', sql.VarChar, breakdownParam.JournalTransactionTypeDesc);
-        request.input('clientCd', sql.VarChar, breakdownParam.ClientCd);
-        request.input('clientNm', sql.VarChar, breakdownParam.ClientNm);
-        request.input('localCurrencyAmt', sql.Decimal(24, 4), breakdownParam.localCurrencyAmt);
-        request.input('usDollarAmt', sql.Decimal(24, 4), breakdownParam.USDollarAmt);
-        request.input('commentsTxt', sql.VarChar, breakdownParam.CommentsTxt);
-        request.input('updateUserId', sql.VarChar, breakdownParam.UpdateUserId);
-        request.input('jDParentId', sql.Int, breakdownParam.jDParentId);
-        request.input('isDeletedInd', sql.VarChar, breakdownParam.isDeletedInd);
-        request.input('TravelPlanIndicator', sql.Int, breakdownParam.TravelPlanIndicator);
-
         query = query + `
                     INSERT INTO JournalTransactionDetail(JournalTransactionId
                                                         ,SplitInd
@@ -113,29 +122,44 @@ exports.handler = function (event, context, callback) {
                 ROLLBACK TRAN
             END CATCH`;
 
+        return query;
+    }
+
+    function updateParent(records) {
+        console.log('Updating parent');
+        let breakdownParam = records;
+
+        var query = getParentQuery();
+
+        var request = new sql.Request();
+
+        request.input('JournalTransactionDetailId', sql.Int, breakdownParam.jDParentId);
+        request.input('updateUserId', sql.VarChar, breakdownParam.UpdateUserId);
+
         request.query(query, function (error, data) {
             if (error) {
-                console.log(error);
+                console.log('error');
+                sql.close();
+                utils.handleError(error, callback);
+            } else {
+                //auditChildren(breakdownParam.jDParentId);  
+                console.log('callback');
+                sql.close();
+                callback(null, {
+                    statusCode: 200,
+                    headers: {
+                        'Access-Control-Allow-Origin': '*' // Required for CORS support to work
+                    },
+                    body: 'OK'
+                });
             }
         });
     }
 
-    function updateParent(records) {
-        let breakdownParam = JSON.parse(records);
-
-        getParentQuery(breakdownParam);
-
-        //res.json();
-    }
-
-    function getParentQuery(breakdownParam) {
-        var request = new sql.Request();
+    function getParentQuery() {
         var query = `
             BEGIN TRY
                 BEGIN TRAN`;
-
-        request.input('JournalTransactionDetailId', sql.Int, breakdownParam.jDParentId);
-        request.input('updateUserId', sql.VarChar, breakdownParam.UpdateUserId);
 
         query = query + `
                     UPDATE JournalTransactionDetail
@@ -149,13 +173,7 @@ exports.handler = function (event, context, callback) {
                 ROLLBACK TRAN
             END CATCH`;
 
-        request.query(query, function (error, data) {
-            if (error) {
-                utils.handleError(error);
-            } else {
-                //auditChildren(breakdownParam.jDParentId);  
-            }
-        });
+        return query;
     }
 
     function auditChildren(jDParentId) {
@@ -226,4 +244,3 @@ exports.handler = function (event, context, callback) {
         });
     }
 };
-

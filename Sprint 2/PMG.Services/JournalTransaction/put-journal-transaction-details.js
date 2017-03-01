@@ -61,7 +61,8 @@ exports.handler = function (event, context, callback) {
             request.input('assignmentProfileIndicator', sql.VarChar, updateParam.assignmentProfileIndicator);
             request.input('journalTransactionDetailID', sql.VarChar, updateParam.JournalTransactionDetailID);
 
-            query = query + `[MappingStatusInd] = @mappingStatusInd,
+            query = query + `[AssigneePersonnelNbr] = @assigneePersonnelNbr, 
+                        [MappingStatusInd] = @mappingStatusInd,
                         [JournalTransactionTypeDesc] = @journalTransactionTypeDesc,
                         [TaxYearNbr] = @taxYearNbr,
                         [ClientNm] = @clientNm,
@@ -75,6 +76,7 @@ exports.handler = function (event, context, callback) {
             console.log(query);
             request.query(query, function (error, data) {
                 if (error) {
+                    sql.close();
                     utils.handleError(error, callback);
                 } else {
                     updateItem(index + 1, body);
