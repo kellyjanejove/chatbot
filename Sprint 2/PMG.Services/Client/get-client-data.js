@@ -35,14 +35,15 @@ exports.handler = function (event, context, callback) {
         var params = event.queryStringParameters;
 
         if (params && Object.keys(params).length) {
-            if (typeof params.value === 'string' && params.value !== '') {
-                request.input('value', sql.VarChar, params.value);
+            if (typeof params.personnelNumber === 'string' && params.personnelNumber !== '') {
+                request.input('value', sql.VarChar, params.personnelNumber);
                 query = query + 'WHERE PersonnelNbr = @value';
             }
         }
 
         query = query + ' ORDER BY [ClientData]';
 
+        console.log(query);
         return request.query(query);
     }
 
