@@ -345,6 +345,20 @@ functions:
         - transactiontype/get-transaction-types.js
         - transactiontype/node_modules/**
 
+  get-yes-no-indicator:
+    handler: codedetail/get-yes-no-indicators.handler
+    name: ${self:custom.prefix}-GET-Yes-No-Indicators
+    description: SERVERLESS-Returns a list of Yes/No Indicators
+    events:
+      - http:
+          path: yesnoindicators
+          method: get
+          cors: true
+    package:
+      include:
+        - codedetail/get-yes-no-indicators.js
+        - codedetail/node_modules/**
+
   post-journal-breakdown:
     handler: journaltransaction/post-journal-breakdown.handler
     name: ${self:custom.prefix}-POST-Journal-Breakdown

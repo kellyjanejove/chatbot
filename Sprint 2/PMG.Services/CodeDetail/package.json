@@ -1,0 +1,12 @@
+{
+  "name": "lambda",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "mssql": "^3.3.0"
+  }
+}
