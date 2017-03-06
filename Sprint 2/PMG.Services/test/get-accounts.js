@@ -26,7 +26,7 @@ describe('get-accounts', () => {
     return wrapped.run({
     }).then((response) => {
       let results = JSON.parse(response.body);
-      expect(results.length).to.be.above(10000);
+      expect(results.length).to.be.above(100000000000000);
 
     });
   });
