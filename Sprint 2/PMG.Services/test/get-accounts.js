@@ -26,8 +26,8 @@ describe('get-accounts', () => {
     return wrapped.run({
     }).then((response) => {
       let results = JSON.parse(response.body);
-      expect(results.length).to.be.above(100000000000000);
-
+      //expect(results.length).to.be.above(100000000000000);
+      expect.fail();
     });
   });
   it('it should format CodeTxt correctly', () => {
