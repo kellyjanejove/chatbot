@@ -44,6 +44,7 @@ functions:
           path: accounts
           method: get
           cors: true
+          authorizer: custom-authorizer
           
     package:
       include:
@@ -59,6 +60,8 @@ functions:
           path: assigneeNames
           method: get
           cors: true
+          authorizer: custom-authorizer
+
     package:
       include:
         - assignee/get-assignee-names.js
@@ -73,6 +76,7 @@ functions:
           path: assigneePersonnelNumbers
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - assignee/get-assignee-personnel-numbers.js
@@ -87,6 +91,7 @@ functions:
           path: assignmentProfileIndicators
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - assignment/get-assignment-profile-indicators.js
@@ -101,6 +106,7 @@ functions:
           path: clientData
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - client/get-client-data.js
@@ -115,6 +121,7 @@ functions:
           path: clientNames
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - client/get-client-names.js
@@ -129,6 +136,7 @@ functions:
           path: companyCodes
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - company/get-company-codes.js
@@ -143,6 +151,7 @@ functions:
           path: companyNames
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - company/get-company-names.js
@@ -158,6 +167,7 @@ functions:
           path: countries
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - location/get-countries.js
@@ -172,6 +182,7 @@ functions:
           path: eidsOfEnteredBy
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - journaltransaction/get-eids-of-entered-by.js
@@ -186,6 +197,7 @@ functions:
           path: eidsOfParkedBy
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - journaltransaction/get-eids-of-parked-by.js
@@ -200,6 +212,7 @@ functions:
           path: functionalAreas
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - journaltransaction/get-functional-areas.js
@@ -214,6 +227,7 @@ functions:
           path: geographicUnits
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - location/get-geographic-units.js
@@ -228,6 +242,7 @@ functions:
           path: hostCountries
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - hhte/get-host-countries.js
@@ -242,6 +257,7 @@ functions:
           path: mappingStatus
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - journaltransaction/get-mapping-status.js
@@ -256,6 +272,7 @@ functions:
           path: projectNames
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - assignment/get-project-names.js
@@ -270,6 +287,7 @@ functions:
           path: projectOrganizations
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - assignment/get-project-organizations.js
@@ -284,6 +302,7 @@ functions:
           path: references
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - journaltransaction/get-references.js
@@ -298,6 +317,7 @@ functions:
           path: sendingCompanyCodes
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - company/get-sending-company-codes.js
@@ -312,6 +332,7 @@ functions:
           path: taxYears
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - taxyear/get-tax-years.js
@@ -326,6 +347,7 @@ functions:
           path: transactionTypeData
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - transactiontype/get-transaction-type-data.js
@@ -340,20 +362,22 @@ functions:
           path: transactionTypes
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - transactiontype/get-transaction-types.js
         - transactiontype/node_modules/**
 
-  get-yes-no-indicator:
+  get-yes-no-indicators:
     handler: codedetail/get-yes-no-indicators.handler
     name: ${self:custom.prefix}-GET-Yes-No-Indicators
     description: SERVERLESS-Returns a list of Yes/No Indicators
     events:
       - http:
-          path: yesnoindicators
+          path: yesNoIndicators
           method: get
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - codedetail/get-yes-no-indicators.js
@@ -368,6 +392,7 @@ functions:
           path: journalBreakdown
           method: post
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - journaltransaction/post-journal-breakdown.js
@@ -382,6 +407,7 @@ functions:
           path: searchDataMapping
           method: post
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - search/post-search-data-mapping.js
@@ -397,6 +423,7 @@ functions:
           path: journalBreakdown
           method: put
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - journaltransaction/put-journal-breakdown.js
@@ -411,6 +438,7 @@ functions:
           path: journalTransactionDetails
           method: put
           cors: true
+          authorizer: custom-authorizer
     package:
       include:
         - journaltransaction/put-journal-transaction-details.js
