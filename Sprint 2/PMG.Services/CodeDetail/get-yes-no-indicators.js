@@ -4,7 +4,6 @@ const sql = require('mssql');
 const utils = require('../utils/lambda-utils');
 
 exports.handler = function (event, context, callback) {
-
     console.log('Loading...');
 
     utils.getDbConfig()
@@ -32,26 +31,13 @@ exports.handler = function (event, context, callback) {
     function getList() {
         var request = new sql.Request();
         var query = getQuery();
-        var params = event.queryStringParameters;
 
-        if (params && Object.keys(params).length) {
-            if (typeof params.personnelNumber === 'string' && params.personnelNumber !== '') {
-                request.input('value', sql.VarChar, params.personnelNumber);
-                query = query + 'WHERE PersonnelNbr = @value';
-            }
-        }
-
-        query = query + ' ORDER BY [ClientData]';
-
-        console.log(query);
         return request.query(query);
     }
 
     function getQuery() {
-        return `SELECT LTRIM(RTRIM(ISNULL(ClientNm, 'no data'))) + ' : ' +
-            CAST(AssignmentProfileIndicator AS varchar(20)) + ' (' + IIF(ISNULL(AssignmentStartDt, '')
-            = '', '', CONVERT(varchar,AssignmentStartDt,106)) + '/' + IIF(ISNULL(AssignmentEndDt, '')
-            = '', '', CONVERT(varchar,AssignmentEndDt,106)) + ') ' + HostCountry AS [ClientData]
-            FROM AssignmentProfileFAM `;
+        return `SELECT [DecodeTxt]
+                FROM CodeDetail WITH(NOLOCK)
+                WHERE [CategoryNbr] = 24`;
     }
 };
